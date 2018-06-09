@@ -1,0 +1,181 @@
+
+
+html {
+height: 100%;
+}
+
+body{
+height: 100%;
+width: 100%;
+margin: 0px;
+
+
+}
+
+
+.container{
+display: flex;
+height:100%;
+width: 100%;
+
+
+background-color: #e7ebee26; 
+}
+
+.page{
+height : 200px;
+margin-top: -282px;
+}
+
+.f{
+height: 100px;
+background-color: red;
+}
+
+.s{
+height: 100px;
+background-color: green;
+
+}
+
+.head{
+display: flex;
+flex-wrap : wrap ;
+
+
+width: 450px;
+height : 100%;
+background-color: #252d3a; 
+}
+
+.left{
+min-width: 85%;
+display: flex;
+flex-wrap : wrap ;
+flex-direction: row;
+
+}
+
+.left1{
+float: right;
+
+}
+
+.reset{
+width : 100%;
+
+
+
+}
+
+
+.hhh{
+min-width: 100%;
+height: 75px;
+background-color: #252d3a;
+}
+
+/*
+.body{
+display: flex;
+
+flex-direction: row;
+flex-wrap: wrap;
+}
+
+*/
+
+.inbound{
+width: 450px;
+height: 150px;
+margin-left: 50px;
+margin-right: 50px;
+background-color:white;
+margin-top: 15px;
+}
+
+
+.chart1{
+width:450px;
+height: 150px;
+margin-top: 15px;
+background-color:white;
+}
+
+
+.chart2{
+width:90%;
+height: 200px;
+margin-top: 15px;
+margin-left: 50px;
+margin-right: 40px;
+background-color:white;
+}
+
+/*
+
+.chart3{
+width:200px;
+height: 200px;
+margin-top: 15px;
+margin-left: 50px;
+margin-right: 40px;
+background-color:white;
+}
+
+
+.chart4{
+width:250px;
+height: 250px;
+margin-top: 15px;
+margin-left: 50px;
+margin-right: 40px;
+background-color:white;
+}
+
+
+.chart5{
+width:550px;
+height: 250px;
+margin-top: 15px;
+margin-left: 50px;
+margin-right: 40px;
+background-color:white;
+}
+
+*/
+a{
+color: white;
+text-transform: none;
+}
+
+table {
+    border-spacing: 3px;
+	margin:auto;
+	
+}
+th, tr{
+margin-right:20px;
+
+}
+
+th, td {
+    border: 1px solid black;
+	text-align : center;
+	
+	padding: 4px;
+}
+
+th, td {
+
+}
+
+.noborder{
+border:none;
+background-color: #c0c0c0ab;
+}
+
+.silver{
+background-color: #b5b5b5;
+}
+
