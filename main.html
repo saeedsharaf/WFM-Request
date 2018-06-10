@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Special Request</title>
-	<link rel="shortcut icon" href="../../../style/icon.png">
+	<link rel="shortcut icon" href="../style/icon.png">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -133,7 +133,6 @@ color:#808080;
 }
 
 #result{
-	transition: 2s;
     width: 20%;
     display:none;
     position: fixed;
@@ -163,12 +162,12 @@ color:#808080;
 			<div class="bbb">
 			<img class="left1" src="../style/flogout.png" width="30px" height="25px" style="margin:10px; margin-right:25px;" usemap="#logout" />
 			<map name="logout">
-			<area shape ="circle" coords="1301,78,1316,93" href="../../../config/logout.php" >
+			<area shape ="circle" coords="1301,78,1316,93" href="../config/logout.php" title="Logout" >
 			</map>
 			
 			<img class="left1" src="../style/set6.png" width="25px" height="25px" style="margin:10px;" usemap="#setting"/> 
 			<map name="setting" >
-			<area shape="circle"  coords="1259,76,1280,95"  href="../../../config/change_pass.php">
+			<area shape="circle"  coords="1259,76,1280,95"  href="../config/change_pass.php" title="Change Password">
 			</map>
 			</div>
 			<!--
@@ -230,7 +229,7 @@ color:#808080;
 					
 			<?php	
 				/******************************************************************************/
-			include'../../../config/connect.php';
+			include'connect.php';
 			
 			
 				$teamid = $_SESSION['teamid'];	

@@ -1,7 +1,7 @@
 <?php
 session_start();
-include'../../../config/connect.php';
-include'../index.html';
+include'connect.php';
+include'../main.html';
 
 
 $sun = $_POST['sun'];
@@ -116,7 +116,7 @@ if($_POST['submit']){
 					function redirect(){
 						 window.location.href='query.php';
 					 }                      
-				 setTimeout(redirect, 1500);
+				 setTimeout(redirect, 1000);
 				
 </script>
 		
@@ -132,7 +132,7 @@ if($_POST['submit']){
 					function redirect(){
 						document.getElementById('result').style.display='none';
 					 }                      
-				 setTimeout(redirect, 1500);
+				 setTimeout(redirect, 1000);
 					
 				
 </script>

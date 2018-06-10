@@ -1,6 +1,6 @@
 <?php
 session_start();
-include'../../../config/connect.php';
+include'connect.php';
 ?>
 <style type="text/css" >
 
@@ -100,12 +100,12 @@ $output .='
 	
 	$reset = "UPDATE `sp` SET `sunday`='------------',`sunli`='0',`monday`='------------',`monli`='0',`tuesday`='------------',`tuesli`='0',`wednesday`='------------',`wednesli`='0',`thursday`='------------',`thursli`='0',`friday`='------------',`frili`='0',`saturday`='------------',`saturli`='0' ";
 	$connt->query($reset);
-	if($conn->query($reset) === true){
-?>
-<script>
-	window.location.href='query.php';
-</script>
-<?php 
+	if($connt->query($reset) === true){
+		?>
+		<script>
+			window.location.href="query.php"
+		</script>
+		<?php
 }
 			
 			

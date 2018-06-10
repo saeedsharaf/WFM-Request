@@ -1,7 +1,7 @@
 <?php
 session_start();
-include'../../../config/connect.php';
-include'../index.html';
+include'connect.php';
+include'../main.html';
 
 $sun = $_POST['sun'];
 $mon = $_POST['mon'];

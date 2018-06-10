@@ -5,7 +5,7 @@ session_start();
 if(empty($_SESSION['username'])){
 ?>
 <script>
-window.location.href='../../../index.php' 
+window.location.href='../index.php' 
 </script>
 <?php
 } ;
@@ -14,7 +14,7 @@ window.location.href='../../../index.php'
 
 
 
-include'../index.html';
+include'../main.html';
 
 
 
