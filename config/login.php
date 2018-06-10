@@ -39,7 +39,7 @@ $error="";
 								
 								
                                ?>
-                               <script>window.location.href='sub/special_request/config/query.php'</script>
+                               <script>window.location.href='config/query.php'</script>
                                <?php
                 
 		  } else {
