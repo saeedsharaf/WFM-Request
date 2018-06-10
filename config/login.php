@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(0);
+//error_reporting(0);
 
 /*
 ob_start(); 
@@ -25,17 +25,21 @@ $error="";
                            $user = $row['user_name'];
                            $pass = $row['password'];
 						   
-                           if($username == $user && $password == $pass){
+						   if (strcasecmp($username,$user) == 0 && strcasecmp($password, $pass) == 0 ){
+						   
+						   
+						   
+                           //if($username == $user && $password == $pass){
 								session_start();
 								$use = $row['user_name'];
 								$_SESSION['username'] = $use;  // global variable hold the user name
 								$_SESSION['super'] = $row['super']; // global variable hold the password
 								$_SESSION['id'] = $row['id'];
 								$_SESSION['teamid'] = $row['team_id'];
-								$row['team_id'] = $_SESSION['teamid'];
+								
 								
                                ?>
-                               <script>window.location.href='config/query.php'</script>
+                               <script>window.location.href='sub/special_request/config/query.php'</script>
                                <?php
                 
 		  } else {
