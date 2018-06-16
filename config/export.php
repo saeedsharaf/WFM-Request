@@ -1,6 +1,34 @@
 <?php
 session_start();
+error_reporting(0);
 include'connect.php';
+
+if($_GET['reset']){
+	include'../main.html';
+$reset = "UPDATE `sp` SET `sunday`='------------',`sunli`='0',`monday`='------------',`monli`='0',`tuesday`='------------',`tuesli`='0',`wednesday`='------------',`wednesli`='0',`thursday`='------------',`thursli`='0',`friday`='------------',`frili`='0',`saturday`='------------',`saturli`='0' ";
+	$connt->query($reset);
+	if($connt->query($reset) === true){
+		?>
+		<script>			
+			document.getElementById('result').innerHTML='<span style="color: black;">Successfully </span>';
+			document.getElementById('result').style.display='block';
+					
+			document.getElementById('result').style.backgroundColor='rgba(62, 212, 32, 0.36)';
+			document.getElementById('result').style.top='58px';
+				
+			function redirect(){
+					 window.location.href='query.php';
+			 }                      
+			setTimeout(redirect, 1000);
+				
+		</script>
+		<?php
+}
+
+} else {
+
+
+
 ?>
 <style type="text/css" >
 
@@ -96,17 +124,11 @@ $output .='
 			header("content-type: application/'xls");
 			header("content-disposition:attachement; filename=WFM Request.xls") ; 
 	}		echo $output;
+
+	}
 	
 	
-	$reset = "UPDATE `sp` SET `sunday`='------------',`sunli`='0',`monday`='------------',`monli`='0',`tuesday`='------------',`tuesli`='0',`wednesday`='------------',`wednesli`='0',`thursday`='------------',`thursli`='0',`friday`='------------',`frili`='0',`saturday`='------------',`saturli`='0' ";
-	$connt->query($reset);
-	if($connt->query($reset) === true){
-		?>
-		<script>
-			window.location.href="query.php"
-		</script>
-		<?php
-}
+	
 			
 			
 			
