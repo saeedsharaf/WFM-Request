@@ -41,7 +41,7 @@ include 'config/login.php';
 	
 </div>
 <div class="saeed">
-<p> For any suggestion or issue please back to me<a href="mail to:XCC-Saeed Sharaf "> XCC-Saeed Sharaf </a></p>
+<p> For any suggestion or issue please back to me<a href="mailto:XCC-Saeed Sharaf?cc=XCC-Ahmed Moharram&subject=WFM Tool "> XCC-Saeed Sharaf </a></p>
 </div>
 
 </body>
