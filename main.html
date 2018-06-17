@@ -663,7 +663,7 @@ color:#808080;
 				if($row['sunli'] == 1){
 					?>
 					
-						<input type="text" value="<?php echo $row['sunday']; ?>" class="dim" readonly > 
+						<input type="text" value="<?php echo $row['sunday']; ?>" class="dim" readonly name="sun" > 
 				</td>
 				<?php
 				} else {
@@ -685,7 +685,7 @@ color:#808080;
 				<?php
 				if($row['monli'] == 1){
 				?>
-				<input type="text" value="<?php echo $row['monday']; ?>"  class="dim" readonly > 
+				<input type="text" value="<?php echo $row['monday']; ?>"  class="dim" name="mon" readonly > 
 				</td>
 				<?php
 				} else {
@@ -711,7 +711,7 @@ color:#808080;
 				if($row['tuesli'] == 1){
 				?>
 
-				<input type="text" value="<?php echo $row['tuesday']; ?>" class="dim" readonly > 
+				<input type="text" value="<?php echo $row['tuesday']; ?>" class="dim" name="tues" readonly > 
 				</td>
 				
 				<?php
@@ -738,7 +738,7 @@ color:#808080;
 				<?php
 				if($row['wednesli'] == 1){
 				?>
-				<input type="text" value="<?php echo $row['wednesday']; ?>" class="dim" readonly > 
+				<input type="text" value="<?php echo $row['wednesday']; ?>" class="dim" name="wednes" readonly > 
 				</td>
 				
 				<?php
@@ -766,7 +766,7 @@ color:#808080;
 				
 				if($row['thursli'] == 1){
 				?>
-				<input type="text" value="<?php echo $row['thursday']; ?>"  class="dim" readonly > 
+				<input type="text" value="<?php echo $row['thursday']; ?>"  class="dim" name="thurs" readonly > 
 
 				</td>
 				
@@ -792,7 +792,7 @@ color:#808080;
 				<?php
 				if($row['frili'] == 1){
 				?>
-				<input type="text" value="<?php echo $row['friday']; ?>"  class="dim" readonly > 
+				<input type="text" value="<?php echo $row['friday']; ?>"  class="dim" name="fri" readonly > 
 
 				</td>
 				
@@ -818,7 +818,7 @@ color:#808080;
 				if($row['saturli'] == 1){
 				?>
 				
-				<input type="text" value="<?php echo $row['saturday']; ?>"  class="dim" readonly > 
+				<input type="text" value="<?php echo $row['saturday']; ?>"  class="dim" name="satur" readonly > 
 				</td>
 				</tr>
 
@@ -934,7 +934,7 @@ color:#808080;
 			
 			
 	</table>
-	<div style="width: 100px;height: 50px;margin: 0 auto;margin-top: 20px;"><input type="submit" name="submit" style="width:100px; height:30px;" class="submit" > </div>
+	<div style="width: 100px;height: 50px;margin: 0 auto;margin-top: 20px;"><input type="submit" name="submit" style="width:100px; height:30px;" class="submit" value="Submit"> </div>
 	</form>
 	</div>
 	</div>
