@@ -11,7 +11,7 @@ $wednes = $_POST['wednes'];
 $thurs =  $_POST['thurs'];
 $fri =  $_POST['fri'];
 $satur = $_POST['satur'];
-
+$sv_id = $_SESSION['id'];
 
 
 
@@ -53,8 +53,15 @@ if($_POST['submit']){
 			
 				
 		if($limit >= 0 ){
-	
+		$lock = "update sp set sunli = '1', monli = '1', tuesli = '1',wednesli = '1', thursli = '1', frili = '1', saturli = '1' WHERE team_id='$sv_id' "; 
+			
+		$connt->query($lock);	
+
 	foreach($_POST['id'] as $ids => $id){
+		
+
+			
+		/*
 		$omer = "select sunday, monday, tuesday, wednesday, thursday, friday, saturday from sp WHERE id='$id' ";
 		$re_omer = $connt->query($omer);
 		$ro_row = $re_omer->fetch_assoc();
@@ -94,7 +101,7 @@ if($_POST['submit']){
 			$connt->query($lsatur);
 			}
 			
-			
+			*/
 			
 			
 			
@@ -102,7 +109,7 @@ if($_POST['submit']){
 			$sql = "UPDATE sp SET sunday='$sun[$ids]', monday = '$mon[$ids]', tuesday = '$tues[$ids]', wednesday = '$wednes[$ids]', thursday = '$thurs[$ids]', friday = '$fri[$ids]', saturday = '$satur[$ids]' WHERE id='$id' ";
 			$connt->query($sql);
 		}
-
+echo $id;
 	
 
 ?>
@@ -117,6 +124,7 @@ if($_POST['submit']){
 						 window.location.href='query.php';
 					 }                      
 				 setTimeout(redirect, 1000);
+				 
 				
 </script>
 		
