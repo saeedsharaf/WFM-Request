@@ -3,8 +3,8 @@ session_start();
 error_reporting(0);
 include'connect.php';
 
-if($_GET['reset']){
-	include'../main.html';
+if($_GET['select'] == 'pervious'){
+	/*
 $reset = "UPDATE `sp` SET `sunday`='------------',`sunli`='0',`monday`='------------',`monli`='0',`tuesday`='------------',`tuesli`='0',`wednesday`='------------',`wednesli`='0',`thursday`='------------',`thursli`='0',`friday`='------------',`frili`='0',`saturday`='------------',`saturli`='0' ";
 	$connt->query($reset);
 	if($connt->query($reset) === true){
@@ -23,11 +23,42 @@ $reset = "UPDATE `sp` SET `sunday`='------------',`sunli`='0',`monday`='--------
 				
 		</script>
 		<?php
+		*/
+		$startdate=strtotime("sunday 0 week ");
+		$enddate=strtotime("+7 day", $startdate);
+		
+
+		while ($startdate < $enddate) {
+		  $day[] = date("m-d-Y", $startdate);
+		 
+		  
+		  '<th><?php echo $day; ?> </th>' .
+		  
+		  
+		  $startdate = strtotime("+1 day", $startdate);
+		}
+
+		$sql="select * from p_sp";
+
+}else {
+
+ $startdate=strtotime("sunday +1 week ");
+		$enddate=strtotime("+7 day", $startdate);
+		
+
+		while ($startdate < $enddate) {
+		  $day[] = date("m-d-Y", $startdate);
+		 
+		  
+		  '<th><?php echo $day; ?> </th>' .
+		  
+		  
+		  $startdate = strtotime("+1 day", $startdate);
+		}
+
+$sql="select * from sp";
+
 }
-
-} else {
-
-
 
 ?>
 <style type="text/css" >
@@ -46,23 +77,11 @@ table, th, td {
 
 <?php
 
-$startdate=strtotime("sunday +1 week ");
-		$enddate=strtotime("+7 day", $startdate);
+
 		
 
-		while ($startdate < $enddate) {
-		  $day[] = date("m-d-Y", $startdate);
-		 
-		  
-		  '<th><?php echo $day; ?> </th>' .
-		  
-		  
-		  $startdate = strtotime("+1 day", $startdate);
-		}
-		;
 
 
-$sql="select * from sp";
 $result =$connt->query($sql);
 
 
@@ -125,7 +144,7 @@ $output .='
 			header("content-disposition:attachement; filename=WFM Request.xls") ; 
 	}		echo $output;
 
-	}
+	
 	
 	
 	

@@ -278,8 +278,13 @@ color:#808080;
 					<input type="submit" name="update"  class="submit" style="width: 66px; height:24px; display:unset; margin-left: 10px;" value="Update">
 				</form>
 				<form action="export.php" method="get">
+					
 				<input type="submit" name="export"  class="submit" style="width: 90px; height:24px; display:unset; margin-left: 10px; float: right;margin-right: 15px;" value="Export">
-				<input type="submit" name="reset"  class="submit" style="width: 90px; height:24px; display:unset; margin-left: 10px; float: right;margin-right: 15px; background-color:#ff295d;" value="Reset">
+				<!--
+				<input type="submit" name="reset"  class="submit" style="width: 90px; height:24px; display:unset; margin-left: 10px; float: right;margin-right: 15px; background-color:#ff295d;" value="Reset"> -->
+
+				<input type="radio" name="select"   value="pervious" style="display: unset; margin-left: 715px" > Pervious Week
+				<input type="radio" name="select"   value="current" style="display: unset;margin-left: 15px;" checked> This Week
 
 				</form>
 				<?php
