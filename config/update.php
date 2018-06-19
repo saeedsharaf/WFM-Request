@@ -12,7 +12,7 @@ $thurs =  $_POST['thurs'];
 $fri =  $_POST['fri'];
 $satur = $_POST['satur'];
 $sv_id = $_SESSION['id'];
-
+$pr = $_POST['pr'];
 
 
 if($_POST['submit']){
@@ -106,10 +106,11 @@ if($_POST['submit']){
 			
 			
 			
-			$sql = "UPDATE sp SET sunday='$sun[$ids]', monday = '$mon[$ids]', tuesday = '$tues[$ids]', wednesday = '$wednes[$ids]', thursday = '$thurs[$ids]', friday = '$fri[$ids]', saturday = '$satur[$ids]' WHERE id='$id' ";
+			$sql = "UPDATE sp SET sunday='$sun[$ids]', monday = '$mon[$ids]', tuesday = '$tues[$ids]', wednesday = '$wednes[$ids]', thursday = '$thurs[$ids]', friday = '$fri[$ids]', saturday = '$satur[$ids]', pr = '$pr[$ids]'  WHERE id='$id' ";
 			$connt->query($sql);
+
 		}
-echo $id;
+
 	
 
 ?>
@@ -123,7 +124,8 @@ echo $id;
 					function redirect(){
 						 window.location.href='query.php';
 					 }                      
-				 setTimeout(redirect, 1000);
+				 setTimeout(redirect, 500);
+				 
 				 
 				
 </script>

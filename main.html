@@ -192,7 +192,7 @@ color:#808080;
 						<thead >
 							<tr class="row100 head" >
 								<th class="column100 column1" data-column="column1" rowspan="2" style="padding:0px ">Name</th>
-								<th class="column100 column2" data-column="column2" rowspan="2">Orcal</th>
+								<th class="column100 column2" data-column="column2" rowspan="2">Oracle</th>
 								<th class="column100 column3" data-column="column3">Sunday</th>
 								<th class="column100 column4" data-column="column4">Monday</th>
 								<th class="column100 column5" data-column="column5">Tuesday</th>
@@ -200,6 +200,10 @@ color:#808080;
 								<th class="column100 column7" data-column="column7">Thursday</th>
 								<th class="column100 column8" data-column="column8">Friday</th>
 								<th class="column100 column9" data-column="column9">Saturday</th>
+							<?php if($_SESSION['super'] == 1){
+								?> <th class="column100 column10" data-column="column10" rowspan="2">Priority</th>
+								<?php
+							} ?>
 							</tr>
 							<tr class="row100 head">
 						<?php
@@ -505,6 +509,16 @@ while($x > 0){
 						<option value="5 PM" > 5 PM </option>
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
+					</select>
+				</td>
+
+
+				<td class="column100 column10" data-column="column10">
+				<select name="pr[]"  class="text" >
+						<option value="<?php echo $row['pr']; ?>" style="color:#a9a8a882;"   selected  > <?php echo $row['pr']; ?> </option>
+						<option value="" > </option>
+						<option value="Priority" > Priority</option>
+						
 					</select>
 				</td>
 			</tr>
