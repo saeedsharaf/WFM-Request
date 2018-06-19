@@ -3,62 +3,49 @@ session_start();
 error_reporting(0);
 include'connect.php';
 
-if($_GET['select'] == 'pervious'){
-	/*
-$reset = "UPDATE `sp` SET `sunday`='------------',`sunli`='0',`monday`='------------',`monli`='0',`tuesday`='------------',`tuesli`='0',`wednesday`='------------',`wednesli`='0',`thursday`='------------',`thursli`='0',`friday`='------------',`frili`='0',`saturday`='------------',`saturli`='0' ";
-	$connt->query($reset);
-	if($connt->query($reset) === true){
-		?>
-		<script>			
-			document.getElementById('result').innerHTML='<span style="color: black;">Successfully </span>';
-			document.getElementById('result').style.display='block';
-					
-			document.getElementById('result').style.backgroundColor='rgba(62, 212, 32, 0.36)';
-			document.getElementById('result').style.top='58px';
-				
-			function redirect(){
-					 window.location.href='query.php';
-			 }                      
-			setTimeout(redirect, 1000);
-				
-		</script>
-		<?php
-		*/
-		$startdate=strtotime("sunday 0 week ");
-		$enddate=strtotime("+7 day", $startdate);
-		
+if($_GET['select'] == 'pervious'){	
+	$sun_startdate = strtotime("monday 0 week");
+	$sun_enddate = strtotime("-2",$sun_startdate); // to back 2 days from monday 
+	$x = 2;
+	while($x > 0){
+		$day[] = date("m-d-Y", $sun_startdate) ; // assign pervoius sunday to array [1]
+		$x--;
+		$sun_startdate = strtotime("-1 day", $sun_startdate);
+	}	
 
-		while ($startdate < $enddate) {
-		  $day[] = date("m-d-Y", $startdate);
-		 
-		  
-		  '<th><?php echo $day; ?> </th>' .
-		  
-		  
-		  $startdate = strtotime("+1 day", $startdate);
-		}
+	$startdate=strtotime("monday 0 week ");
+	$enddate=strtotime("+6 day", $startdate); // to get the next 6 day from monday
+	
+	while ($startdate < $enddate) {
+	  $days[] = date("m-d-Y", $startdate);	  
+	  $startdate = strtotime("+1 day", $startdate);
+	}
 
-		$sql="select * from p_sp";
+	$sql="select * from p_sp";
 
 }else {
+ 	$sun_startdate = strtotime("monday +1 week");
+	$sun_enddate = strtotime("-2",$sun_startdate);
 
- $startdate=strtotime("sunday +1 week ");
-		$enddate=strtotime("+7 day", $startdate);
+	$x = 2;
+
+	while($x > 0){
+		$day[] = date("m-d-Y", $sun_startdate) ;
+		$x--;
+		$sun_startdate = strtotime("-1 day", $sun_startdate);	
+	}
+
+		$startdate=strtotime("monday +1 week ");
+		$enddate=strtotime("+6 day", $startdate);
 		
-
 		while ($startdate < $enddate) {
-		  $day[] = date("m-d-Y", $startdate);
-		 
-		  
-		  '<th><?php echo $day; ?> </th>' .
-		  
-		  
+		  $days[] = date("m-d-Y", $startdate);
 		  $startdate = strtotime("+1 day", $startdate);
 		}
 
-$sql="select * from sp";
+	$sql="select * from sp";
 
-}
+}	
 
 ?>
 <style type="text/css" >
@@ -75,24 +62,11 @@ table, th, td {
 }
 </style>
 
+
 <?php
-
-
-		
-
-
-
 $result =$connt->query($sql);
-
-
-
-
 $output="";
-
-if($result->num_rows > 0){
-
-
-		
+if($result->num_rows > 0){	
 $output .='
 	<table>
 		<tr>
@@ -108,18 +82,14 @@ $output .='
 			<th class="color">Saturday</th>
 		</tr>
 		<tr>
-			<th class="color">'. $day[0].'</th>
 			<th class="color">'. $day[1].'</th>
-			<th class="color">'. $day[2].'</th>
-			<th class="color">'. $day[3].'</th>
-			<th class="color">'. $day[4].'</th>
-			<th class="color">'. $day[5].'</th>
-			<th class="color">'. $day[6].'</th>
+			<th class="color">'. $days[0].'</th>
+			<th class="color">'. $days[1].'</th>
+			<th class="color">'. $days[2].'</th>
+			<th class="color">'. $days[3].'</th>
+			<th class="color">'. $days[4].'</th>
+			<th class="color">'. $days[5].'</th>
 		</tr>';	
-		
-		
-	
-	
 			while($row = $result->fetch_array()){
 			$output .='
 			<tr>
@@ -137,12 +107,11 @@ $output .='
 			';
 			}
 			$output .='
-			
 			</table>';
-			
 			header("content-type: application/'xls");
 			header("content-disposition:attachement; filename=WFM Request.xls") ; 
-	}		echo $output;
+	}		
+	echo $output;
 
 	
 	
