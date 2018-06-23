@@ -14,6 +14,13 @@ $satur = $_POST['satur'];
 $sv_id = $_SESSION['id'];
 $pr = $_POST['pr'];
 
+$tdate= $_POST['tdate'];
+$ttime= $_POST['ttime'];
+
+
+
+
+
 
 if($_POST['submit']){
 			
@@ -50,7 +57,8 @@ if($_POST['submit']){
 				
 	
 			
-			
+			$tmeeting= "update sp set ttime = '$ttime' , tdate = '$tdate' where team_id = '$sv_id'";
+			$connt->query($tmeeting);
 				
 		if($limit >= 0 ){
 		$lock = "update sp set sunli = '1', monli = '1', tuesli = '1',wednesli = '1', thursli = '1', frili = '1', saturli = '1' WHERE team_id='$sv_id' "; 

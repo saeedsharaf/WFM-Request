@@ -145,6 +145,10 @@ color:#808080;
 
 }
 
+.tmeeting{
+	width:25%;
+	margin-top: 50px;
+}
 
 
 
@@ -168,6 +172,13 @@ color:#808080;
 			<img class="left1" src="../style/set6.png" width="25px" height="25px" style="margin:10px;" usemap="#setting"/> 
 			<map name="setting" >
 			<area shape="circle"  coords="1259,76,1280,95"  href="../config/change_pass.php" title="Change Password">
+			<?php 
+			if($_SESSION['super'] == 1){
+			?>
+					<a href="#" title="One to One"><img class="left1" src="../style/coaching1.png" width="35px" height="35px" style="margin:5px;" /></a> 
+					
+					<?php
+				} ?>
 			</map>
 			</div>
 			<!--
@@ -267,8 +278,9 @@ while($x > 0){
 			
 			
 				$teamid = $_SESSION['teamid'];	
-				
-				$sql1 = "select * from sp where team_id ='$teamid' "; 
+
+				$sql1 = "select * from sp where team_id ='$teamid' ";
+
 				$result1 = $connt->query($sql1);
 				
 				$x = 0;
@@ -310,6 +322,7 @@ while($x > 0){
 					<input type="number" name="limitation" style="width:35px; text-align:center; display:unset;" value="<?php echo $li['lim']; ?>">
 					
 					<input type="submit" name="update"  class="submit" style="width: 66px; height:24px; display:unset; margin-left: 10px;" value="Update">
+					
 				</form>
 				<form action="export.php" method="get">
 					
@@ -317,7 +330,7 @@ while($x > 0){
 				<!--
 				<input type="submit" name="reset"  class="submit" style="width: 90px; height:24px; display:unset; margin-left: 10px; float: right;margin-right: 15px; background-color:#ff295d;" value="Reset"> -->
 
-				<input type="radio" name="select"   value="pervious" style="display: unset; margin-left: 715px" > Pervious Week
+				<input type="radio" name="select"   value="pervious" style="display: unset; margin-left: 620px" > Pervious Week
 				<input type="radio" name="select"   value="current" style="display: unset;margin-left: 15px;" checked> This Week
 
 				</form>
@@ -341,8 +354,17 @@ while($x > 0){
 				</div>
 				<?php
 				$id = $_SESSION['id'];	
+
+				if($teamid == 103){
+				$sql = "select * from sp where team_id > 101 ";
 				
-				$sql = "select * from sp where team_id ='$id' "; 
+			} else{
+				$sql = "select * from sp where team_id ='$teamid' ";
+				
+
+				}
+				
+				
 				$result = $connt->query($sql);
 
 				if($result->num_rows > 0 ){
@@ -527,7 +549,11 @@ while($x > 0){
 		}
 		
 		}
+
+
+		?>
 		
+		<?php
 		
 } else{
 			/*if($limit > 0){
@@ -695,6 +721,10 @@ while($x > 0){
 					</select>
 				</td>
 			</tr>
+
+
+
+
 <?php
 } else {
 */		
@@ -983,6 +1013,68 @@ while($x > 0){
 			
 			
 	</table>
+<?php 
+if($_SESSION['super'] == 1){
+$sql = "select * from sp where team_id ='$teamid' ";
+$result =$connt->query($sql);
+
+$row = $result->fetch_assoc()
+?>
+
+	<table class="tmeeting" >
+		<thead>
+			<tr style="height:30px;">
+				<th style="font-size: 16px;"colspan="2">Team Meeting</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr style="background-color: #24318e; ">
+				<td style="color: white">Day</td>
+				<td style="color: white">From</td>
+			</tr>
+
+			<tr style="height:20px;  ">
+				<td style="border: 1px solid; font-size: 14px; color: white;">
+					<select style="height:30px; width:90%;padding-left: 33px; " name="tdate">
+						<option value="<?php echo $row['tdate']; ?>" selected> <?php echo $row['tdate']; ?></option>
+						<option value="" ></option>
+						<option value="Sunday" name="">Sunday</option>
+						<option value="Monday" name="">Monday</option>
+						<option value="Tuesday" name="">Tuesday</option>
+						<option value="Wednesday" name="">Wednesday</option>
+						<option value="Thursday" name="">Thursday</option>
+						<option value="Friday" name="">Friday</option>
+						<option value="Saturday" name="">Saturday</option>
+
+				</select>
+
+				 </td>
+
+				
+			<td style=" height:40px;">
+				<select style="height:30px; width:90%;padding-left: 33px;" name="ttime">
+					<option value="<?php echo $row['ttime']; ?>" selected> <?php echo $row['ttime']; ?></option>
+					<option value="" name="" ></option>
+					<option value="12 PM" name="">12 PM</option>
+					<option value="1 PM" name="">1 PM</option>
+					<option value="2 PM" name="">2 PM</option>
+					<option value="3 PM" name="">3 PM</option>
+					<option value="4 PM" name="">4 PM</option>
+					<option value="5 PM" name="">5 PM</option>
+					<option value="6 PM" name="">6 PM</option>
+					<option value="7 PM" name="">7 PM</option>
+					<option value="8 PM" name="">8 PM</option>
+					
+				</select>
+			</td>
+		</tr>
+		</tbody>
+		</table>
+		<?php
+	}
+	?>
+
 	<div style="width: 100px;height: 50px;margin: 0 auto;margin-top: 20px;"><input type="submit" name="submit" style="width:100px; height:30px;" class="submit" value="Submit"> </div>
 	</form>
 	</div>

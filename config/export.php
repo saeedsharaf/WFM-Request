@@ -81,6 +81,7 @@ $output .='
 			<th class="color">Friday</th>
 			<th class="color">Saturday</th>
 			<th rowspan="2" class="color">Priority</th>
+			<th colspan="2" class="color">Team Meeting </th>
 		</tr>
 		<tr>
 			<th class="color">'. $day[1].'</th>
@@ -90,6 +91,8 @@ $output .='
 			<th class="color">'. $days[3].'</th>
 			<th class="color">'. $days[4].'</th>
 			<th class="color">'. $days[5].'</th>
+			<th class="color">Day</th>
+			<th class="color">Time</th>
 		</tr>';	
 			while($row = $result->fetch_array()){
 			$output .='
@@ -105,6 +108,8 @@ $output .='
 				<td>' .$row['friday'].'</td>
 				<td>' .$row['saturday'].'</td>
 				<td>' .$row['pr'].'</td>
+				<td>' .$row['tdate'].'</td>
+				<td>' .$row['ttime'].'</td>
 			</tr>
 			';
 			}
