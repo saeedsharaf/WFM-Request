@@ -10,7 +10,7 @@ $today = date("l");
 
 
 
-if($today == 'Sunday' ){
+if($today == 'Sunday' or $today == 'Monday' ){
 	$sql="select st from sp";
 	$result = $connt->query($sql);
 	$row = $result->fetch_assoc;
@@ -23,7 +23,7 @@ if($today == 'Sunday' ){
 }
 
 
-if ($today == 'Monday' or $today == 'Tuesday' or $today == 'Wednesday' or $today == 'Thursday' or $today == 'Friday' or $today == 'Saturday' ){
+if ($today == 'Tuesday' or $today == 'Wednesday' or $today == 'Thursday' or $today == 'Friday' or $today == 'Saturday' ){
 	$check = "select st from sp"; // select data base previous data bas to check edit 
 	$ch_result = $connt->query($check);
 	$rows = $ch_result->fetch_assoc();

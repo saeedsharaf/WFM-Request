@@ -80,6 +80,7 @@ $output .='
 			<th class="color">Thursday</th>
 			<th class="color">Friday</th>
 			<th class="color">Saturday</th>
+			<th rowspan="2" class="color">Priority</th>
 		</tr>
 		<tr>
 			<th class="color">'. $day[1].'</th>
@@ -103,6 +104,7 @@ $output .='
 				<td>' .$row['thursday'].'</td>
 				<td>' .$row['friday'].'</td>
 				<td>' .$row['saturday'].'</td>
+				<td>' .$row['pr'].'</td>
 			</tr>
 			';
 			}
