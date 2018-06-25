@@ -64,9 +64,11 @@ table, th, td {
 
 
 <?php
+
 $result =$connt->query($sql);
 $output="";
-if($result->num_rows > 0){	
+if($result->num_rows > 0){
+ 	
 $output .='
 	<table>
 		<tr>
@@ -82,6 +84,7 @@ $output .='
 			<th class="color">Saturday</th>
 			<th rowspan="2" class="color">Priority</th>
 			<th colspan="2" class="color">Team Meeting </th>
+			<th colspan="8" class="color">One to One </th>
 		</tr>
 		<tr>
 			<th class="color">'. $day[1].'</th>
@@ -93,6 +96,14 @@ $output .='
 			<th class="color">'. $days[5].'</th>
 			<th class="color">Day</th>
 			<th class="color">Time</th>
+			<th class="color">'. $day[1].'</th>
+			<th class="color">'. $days[0].'</th>
+			<th class="color">'. $days[1].'</th>
+			<th class="color">'. $days[2].'</th>
+			<th class="color">'. $days[3].'</th>
+			<th class="color">'. $days[4].'</th>
+			<th class="color">'. $days[5].'</th>
+			<th class="color">From</th>
 		</tr>';	
 			while($row = $result->fetch_array()){
 			$output .='
@@ -110,6 +121,16 @@ $output .='
 				<td>' .$row['pr'].'</td>
 				<td>' .$row['tdate'].'</td>
 				<td>' .$row['ttime'].'</td>
+				<td>' .$row['o_sunday'].'</td>
+				<td>' .$row['o_monday'].'</td>
+				<td>' .$row['o_tuesday'].'</td>
+				<td>' .$row['o_wednesday'].'</td>
+				<td>' .$row['o_thursday'].'</td>
+				<td>' .$row['o_friday'].'</td>
+				<td>' .$row['o_saturday'].'</td>
+				<td>' .$row['fr'].'</td>
+				
+
 			</tr>
 			';
 			}
@@ -117,13 +138,9 @@ $output .='
 			</table>';
 			header("content-type: application/'xls");
 			header("content-disposition:attachement; filename=WFM Request.xls") ; 
+			
+
 	}		
-	echo $output;
+	echo $output ;
 
 	
-	
-	
-	
-			
-			
-			

@@ -55,7 +55,7 @@ window.location.href='../index.php'
 </script>
 <?php
 }else {
-	include'../main.html';
+	include'../oto.php';
 } 
 
 
