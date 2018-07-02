@@ -174,7 +174,8 @@ color:#808080;
 			<area shape="circle"  coords="1259,76,1280,95"  href="../config/change_pass.php" title="Change Password">
 			<?php 
 			if($_SESSION['super'] == 1){
-			?>
+			?>		
+					<a href="task.php" title="Task"><img class="left1" src="../style/task.png" width="30px" height="30px" style="margin:5px;margin-top:8px" /></a> 
 					<a href="oto.php" title="One to One"><img class="left1" src="../style/coaching1.png" width="30px" height="35px" style="margin:5px;" /></a> 
 					<a href="query.php" title="Home"><img class="left1" src="../style/home1.png" width="25px" height="25px" style="margin:5px; margin-top:11px; margin-right: 10px; " /></a> 
 					
@@ -356,14 +357,11 @@ while($x > 0){
 				<?php
 				$id = $_SESSION['id'];	
 
-				if($teamid == 103){
-				$sql = "select * from sp where team_id > 101 ";
 				
-			} else{
 				$sql = "select * from sp where team_id ='$teamid' ";
 				
 
-				}
+				
 				
 				
 				$result = $connt->query($sql);
@@ -400,6 +398,7 @@ while($x > 0){
 						<option value="5 PM" > 5 PM </option>
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
+						<option value="UnPaid" > UnPaid </option>
 					</select>
 				</td>
 				
@@ -422,6 +421,7 @@ while($x > 0){
 						<option value="5 PM" > 5 PM </option>
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
+						<option value="UnPaid" > UnPaid </option>
 					</select>
 
 				</td>
@@ -445,6 +445,7 @@ while($x > 0){
 						<option value="5 PM" > 5 PM </option>
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
+						<option value="UnPaid" > UnPaid </option>
 					</select>
 				</td>
 				<td class="column100 column6" data-column="column6">
@@ -466,6 +467,7 @@ while($x > 0){
 						<option value="5 PM" > 5 PM </option>
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
+						<option value="UnPaid" > UnPaid </option>
 					</select>
 				</td>
 				<td class="column100 column7" data-column="column7">
@@ -487,6 +489,7 @@ while($x > 0){
 						<option value="5 PM" > 5 PM </option>
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
+						<option value="UnPaid" > UnPaid </option>
 					</select>
 
 				</td>
@@ -509,6 +512,7 @@ while($x > 0){
 						<option value="5 PM" > 5 PM </option>
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
+						<option value="UnPaid" > UnPaid </option>
 					</select>
 
 				</td>
@@ -532,6 +536,7 @@ while($x > 0){
 						<option value="5 PM" > 5 PM </option>
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
+						<option value="UnPaid" > UnPaid </option>
 					</select>
 				</td>
 
@@ -556,179 +561,8 @@ while($x > 0){
 		
 		<?php
 		
-} else{
-			/*if($limit > 0){
-		$id = $_SESSION['id'] ;
-		$sql = "select * from sp where id = '$id' ";
-		$result = $connt->query($sql);
-		$row = $result->fetch_assoc();
-		
-		?>
-		<form action="update1.php" method="post">
-		<tr class="row100">
-				<td class="column100 column1" data-column="column1" style="padding-left: 20px;"><?php echo $row['name']; ?></td>
-				<td class="column100 column2" data-column="column2" style="width:140px;"><input type="hidden" name="id" value="<?php echo $row['id']; ?>" ><?php echo $row['id']; ?> </td>
-				<td class="column100 column3" data-column="column3">
-					<select name="sun"  class="text" >
-						<option value="<?php echo $row['sunday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['sunday']; ?> </option>
-						<option value="------------" > ------------</option>
-						<option value="Annual" > Annual</option>
-						<option value="Day OFF" > Day OFF </option>
-						<option value="Planned Sick" > Planned Sick </option>
-						<option value="8 AM" > 8 AM </option>
-						<option value="9 AM"> 9 AM </option>
-						<option value="10 AM" > 10 AM </option>
-						<option value="11 AM" > 11 AM </option>
-						<option value="12 PM" > 12 PM</option>
-						<option value="1 PM" > 1 PM </option>
-						<option value="2 PM" > 2 PM </option>
-						<option value="3 PM" > 3 PM </option>
-						<option value="4 PM" > 4 PM </option>
-						<option value="5 PM" > 5 PM </option>
-						<option value="6 PM" > 6 PM </option>
-						<option value="11 PM" > 11 PM </option>
-					</select>
-				</td>
-				
-				<td class="column100 column4" data-column="column4">
-				<select name="mon"  class="text" >
-						<option value="<?php echo $row['monday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['monday']; ?> </option>
-						<option value="------------" > ------------</option>
-						<option value="Annual" > Annual</option>
-						<option value="Day OFF" > Day OFF </option>
-						<option value="Planned Sick" > Planned Sick </option>
-						<option value="8 AM" > 8 AM </option>
-						<option value="9 AM"> 9 AM </option>
-						<option value="10 AM" > 10 AM </option>
-						<option value="11 AM" > 11 AM </option>
-						<option value="12 PM" > 12 PM</option>
-						<option value="1 PM" > 1 PM </option>
-						<option value="2 PM" > 2 PM </option>
-						<option value="3 PM" > 3 PM </option>
-						<option value="4 PM" > 4 PM </option>
-						<option value="5 PM" > 5 PM </option>
-						<option value="6 PM" > 6 PM </option>
-						<option value="11 PM" > 11 PM </option>
-					</select>
-
-				</td>
-				
-				<td class="column100 column5" data-column="column5">
-				<select name="tues"  class="text" >
-						<option value="<?php echo $row['tuesday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['tuesday']; ?> </option>
-						<option value="------------" > ------------</option>
-						<option value="Annual" > Annual</option>
-						<option value="Day OFF" > Day OFF </option>
-						<option value="Planned Sick" > Planned Sick </option>
-						<option value="8 AM" > 8 AM </option>
-						<option value="9 AM"> 9 AM </option>
-						<option value="10 AM" > 10 AM </option>
-						<option value="11 AM" > 11 AM </option>
-						<option value="12 PM" > 12 PM</option>
-						<option value="1 PM" > 1 PM </option>
-						<option value="2 PM" > 2 PM </option>
-						<option value="3 PM" > 3 PM </option>
-						<option value="4 PM" > 4 PM </option>
-						<option value="5 PM" > 5 PM </option>
-						<option value="6 PM" > 6 PM </option>
-						<option value="11 PM" > 11 PM </option>
-					</select>
-				</td>
-				<td class="column100 column6" data-column="column6">
-				<select name="wednes"  class="text" >
-						<option value="<?php echo $row['wednesday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['wednesday']; ?> </option>
-						<option value="------------" > ------------</option>
-						<option value="Annual" > Annual</option>
-						<option value="Day OFF" > Day OFF </option>
-						<option value="Planned Sick" > Planned Sick </option>
-						<option value="8 AM" > 8 AM </option>
-						<option value="9 AM"> 9 AM </option>
-						<option value="10 AM" > 10 AM </option>
-						<option value="11 AM" > 11 AM </option>
-						<option value="12 PM" > 12 PM</option>
-						<option value="1 PM" > 1 PM </option>
-						<option value="2 PM" > 2 PM </option>
-						<option value="3 PM" > 3 PM </option>
-						<option value="4 PM" > 4 PM </option>
-						<option value="5 PM" > 5 PM </option>
-						<option value="6 PM" > 6 PM </option>
-						<option value="11 PM" > 11 PM </option>
-					</select>
-				</td>
-				<td class="column100 column7" data-column="column7">
-				<select name="thurs"  class="text" >
-						<option value="<?php echo $row['thursday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['thursday']; ?> </option>
-						<option value="------------" > ------------</option>
-						<option value="Annual" > Annual</option>
-						<option value="Day OFF" > Day OFF </option>
-						<option value="Planned Sick" > Planned Sick </option>
-						<option value="8 AM" > 8 AM </option>
-						<option value="9 AM"> 9 AM </option>
-						<option value="10 AM" > 10 AM </option>
-						<option value="11 AM" > 11 AM </option>
-						<option value="12 PM" > 12 PM</option>
-						<option value="1 PM" > 1 PM </option>
-						<option value="2 PM" > 2 PM </option>
-						<option value="3 PM" > 3 PM </option>
-						<option value="4 PM" > 4 PM </option>
-						<option value="5 PM" > 5 PM </option>
-						<option value="6 PM" > 6 PM </option>
-						<option value="11 PM" > 11 PM </option>
-					</select>
-
-				</td>
-				<td class="column100 column8" data-column="column8">
-				<select name="fri"  class="text" >
-						<option value="<?php echo $row['friday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['friday']; ?> </option>
-						<option value="------------" > ------------</option>
-						<option value="Annual" > Annual</option>
-						<option value="Day OFF" > Day OFF </option>
-						<option value="Planned Sick" > Planned Sick </option>
-						<option value="8 AM" > 8 AM </option>
-						<option value="9 AM"> 9 AM </option>
-						<option value="10 AM" > 10 AM </option>
-						<option value="11 AM" > 11 AM </option>
-						<option value="12 PM" > 12 PM</option>
-						<option value="1 PM" > 1 PM </option>
-						<option value="2 PM" > 2 PM </option>
-						<option value="3 PM" > 3 PM </option>
-						<option value="4 PM" > 4 PM </option>
-						<option value="5 PM" > 5 PM </option>
-						<option value="6 PM" > 6 PM </option>
-						<option value="11 PM" > 11 PM </option>
-					</select>
-
-				</td>
-				
-				<td class="column100 column9" data-column="column9">
-				<select name="satur"  class="text" >
-						<option value="<?php echo $row['saturday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['saturday']; ?> </option>
-						<option value="------------" > ------------</option>
-						<option value="Annual" > Annual</option>
-						<option value="Day OFF" > Day OFF </option>
-						<option value="Planned Sick" > Planned Sick </option>
-						<option value="8 AM" > 8 AM </option>
-						<option value="9 AM"> 9 AM </option>
-						<option value="10 AM" > 10 AM </option>
-						<option value="11 AM" > 11 AM </option>
-						<option value="12 PM" > 12 PM</option>
-						<option value="1 PM" > 1 PM </option>
-						<option value="2 PM" > 2 PM </option>
-						<option value="3 PM" > 3 PM </option>
-						<option value="4 PM" > 4 PM </option>
-						<option value="5 PM" > 5 PM </option>
-						<option value="6 PM" > 6 PM </option>
-						<option value="11 PM" > 11 PM </option>
-					</select>
-				</td>
-			</tr>
-
-
-
-
-<?php
 } else {
-*/		
+	
 		$id = $_SESSION['id'] ;
 		$sql = "select * from sp where id = '$id' ";
 		$result = $connt->query($sql);

@@ -85,6 +85,7 @@ $output .='
 			<th rowspan="2" class="color">Priority</th>
 			<th colspan="2" class="color">Team Meeting </th>
 			<th colspan="8" class="color">One to One </th>
+			<th colspan="9" class="color" style="background-color:#8e2439;">Task </th>
 		</tr>
 		<tr>
 			<th class="color">'. $day[1].'</th>
@@ -104,6 +105,15 @@ $output .='
 			<th class="color">'. $days[4].'</th>
 			<th class="color">'. $days[5].'</th>
 			<th class="color">From</th>
+			<th class="color" style="background-color:#8e2439;">'. $day[1].'</th>
+			<th class="color" style="background-color:#8e2439;">'. $days[0].'</th>
+			<th class="color" style="background-color:#8e2439;">'. $days[1].'</th>
+			<th class="color" style="background-color:#8e2439;">'. $days[2].'</th>
+			<th class="color" style="background-color:#8e2439;">'. $days[3].'</th>
+			<th class="color" style="background-color:#8e2439;">'. $days[4].'</th>
+			<th class="color" style="background-color:#8e2439;">'. $days[5].'</th>
+			<th class="color" style="background-color:#8e2439;">From</th>
+			<th class="color" style="background-color:#8e2439;">To</th>
 		</tr>';	
 			while($row = $result->fetch_array()){
 			$output .='
@@ -129,6 +139,16 @@ $output .='
 				<td>' .$row['o_friday'].'</td>
 				<td>' .$row['o_saturday'].'</td>
 				<td>' .$row['fr'].'</td>
+				<td>' .$row['t_sunday'].'</td>
+				<td>' .$row['t_monday'].'</td>
+				<td>' .$row['t_tuesday'].'</td>
+				<td>' .$row['t_wednesday'].'</td>
+				<td>' .$row['t_thursday'].'</td>
+				<td>' .$row['t_friday'].'</td>
+				<td>' .$row['t_saturday'].'</td>
+				<td>' .$row['t_from'].'</td>
+				<td>' .$row['t_to'].'</td>
+
 				
 
 			</tr>

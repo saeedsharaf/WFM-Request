@@ -215,6 +215,7 @@ color:#808080;
 								<th class="column100 column9" data-column="column9">Saturday</th>
 							<?php if($_SESSION['super'] == 1){
 								?> <th class="column100 column10" data-column="column10" rowspan="2">From</th>
+									<th class="column100 column11" data-column="column11" rowspan="2">To</th>
 								<?php
 							} ?>
 							</tr>
@@ -301,14 +302,11 @@ while($x > 0){
 				<?php
 				$id = $_SESSION['id'];	
 
-				if($teamid == 103){
-				$sql = "select * from sp where team_id > 101 ";
-				
-			} else{
+			
 				$sql = "select * from sp where team_id ='$teamid' ";
 				
 
-				}
+				
 				
 				
 				$result = $connt->query($sql);
@@ -321,25 +319,25 @@ while($x > 0){
 				while ($row = $result->fetch_assoc()){ 
 
 			?>
-			<form action="oto_update.php" method="post">
+			<form action="task_update.php" method="post">
 			<tr class="row100">
 				
 				<td class="column100 column1" data-column="column1" style="padding-left: 20px; padding-right:20px;"><?php echo $row['name']; ?></td>
 				<td class="column100 column2" data-column="column2" style="width:140px;"><?php echo $row['id']; ?> <input type="hidden" name="id[]"  value="<?php echo $row['id']; ?>"> </td>
 				<td class="column100 column3" data-column="column3">
 					<select name="sun[]"  class="text" >
-						<option value="<?php echo $row['o_sunday']; ?>" style="color:#80808082;"   selected > <?php echo $row['o_sunday']; ?> </option>
-						<option value="-----------------" > ----------------- </option>
-						<option value="One to One" > One to One</option>
+						<option value="<?php echo $row['t_sunday']; ?>" style="color:#80808082;"   selected > <?php echo $row['t_sunday']; ?> </option>
+						<option value="" >  </option>
+						<option value="Task" > Task</option>
 						
 					</select>
 				</td>
 				
 				<td class="column100 column4" data-column="column4">
 				<select name="mon[]"  class="text" >
-						<option value="<?php echo $row['o_monday']; ?>" style="color:#a9a8a882;"    selected> <?php echo $row['o_monday']; ?> </option>
-						<option value="----------------" > ---------------- </option>
-						<option value="One to One " > One to One </option>
+						<option value="<?php echo $row['t_monday']; ?>" style="color:#a9a8a882;"    selected> <?php echo $row['t_monday']; ?> </option>
+						<option value="" >  </option>
+						<option value="Task " > Task </option>
 						
 					</select>
 
@@ -347,34 +345,34 @@ while($x > 0){
 				
 				<td class="column100 column5" data-column="column5">
 				<select name="tues[]"  class="text" >
-						<option value="<?php echo $row['o_tuesday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['o_tuesday']; ?> </option>
-						<option value="------------" > ------------</option>
-						<option value="One to One " > One to One </option>
+						<option value="<?php echo $row['t_tuesday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['t_tuesday']; ?> </option>
+						<option value="" > </option>
+						<option value="Task " > Task </option>
 						
 					</select>
 				</td>
 				<td class="column100 column6" data-column="column6">
 				<select name="wednes[]"  class="text" >
-						<option value="<?php echo $row['o_wednesday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['o_wednesday']; ?> </option>
-						<option value="------------" > ------------</option>
-						<option value="One to One " > One to One </option>
+						<option value="<?php echo $row['t_wednesday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['t_wednesday']; ?> </option>
+						<option value="" > </option>
+						<option value="Task " > Task </option>
 						
 					</select>
 				</td>
 				<td class="column100 column7" data-column="column7">
 				<select name="thurs[]"  class="text" >
-						<option value="<?php echo $row['o_thursday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['o_thursday']; ?> </option>
-						<option value="------------" > ------------</option>
-						<option value="One to One " > One to One </option>
+						<option value="<?php echo $row['t_thursday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['t_thursday']; ?> </option>
+						<option value="" > </option>
+						<option value="Task " > Task </option>
 						
 					</select>
 
 				</td>
 				<td class="column100 column8" data-column="column8">
 				<select name="fri[]"  class="text" >
-						<option value="<?php echo $row['o_friday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['o_friday']; ?> </option>
-						<option value="------------" > ------------</option>
-						<option value="One to One " > One to One </option>
+						<option value="<?php echo $row['t_friday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['t_friday']; ?> </option>
+						<option value="" > </option>
+						<option value="Task " > Task </option>
 						
 					</select>
 
@@ -382,17 +380,53 @@ while($x > 0){
 				
 				<td class="column100 column9" data-column="column9">
 				<select name="satur[]"  class="text" >
-						<option value="<?php echo $row['o_saturday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['o_saturday']; ?> </option>
-						<option value="------------" > ------------</option>
-						<option value="One to One " > One to One </option>
+						<option value="<?php echo $row['t_saturday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['t_saturday']; ?> </option>
+						<option value="" > </option>
+						<option value="Task " > Task </option>
 						
 					</select>
 				</td>
 
 
 				<td class="column100 column10" data-column="column10">
-				<select name="fr[]"  class="text" >
-						<option value="<?php echo $row['fr']; ?>" style="color:#a9a8a882;"   selected  > <?php echo $row['fr']; ?> </option>
+				<select name="from[]"  class="text" >
+						<option value="<?php echo $row['t_from']; ?>" style="color:#a9a8a882;"   selected  > <?php echo $row['t_from']; ?> </option>
+						<option value="" > </option>
+						<option value="8 AM" > 8 AM </option>
+						<option value="9 AM" > 9 AM </option>
+						<option value="10 AM" > 10 AM </option>
+						<option value="11 AM" > 11 AM </option>
+						<option value="12 PM" > 12 PM </option>
+						<option value="1 PM" > 1 PM </option>
+						<option value="2 PM" > 2 PM </option>
+						<option value="3 PM" > 3 PM </option>
+						<option value="4 PM" > 4 PM </option>
+						<option value="5 PM" > 5 PM </option>
+						<option value="6 PM" > 6 PM </option>
+						<option value="7 PM" > 7 PM </option>
+						<option value="8 PM" > 8 PM </option>
+						<option value="9 PM" > 9 PM </option>
+						<option value="10 PM" > 10 PM </option>
+						<option value="11 PM" > 11 PM </option>
+						<option value="12 AM" > 12 AM </option>
+						<option value="1 AM" > 1 AM </option>
+						<option value="2 AM" > 2 AM </option>
+						<option value="3 AM" > 3 AM </option>
+						<option value="4 AM" > 4 AM </option>
+						<option value="5 AM" > 5 AM </option>
+						<option value="6 AM" > 6 AM </option>
+						<option value="7 AM" > 7 AM </option>
+
+
+
+
+						
+					</select>
+				</td>
+
+				<td class="column100 column11" data-column="column11">
+				<select name="to[]"  class="text" >
+						<option value="<?php echo $row['t_to']; ?>" style="color:#a9a8a882;"   selected  > <?php echo $row['t_to']; ?> </option>
 						<option value="" > </option>
 						<option value="8 AM" > 8 AM </option>
 						<option value="9 AM" > 9 AM </option>
