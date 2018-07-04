@@ -156,7 +156,41 @@ color:#808080;
 <!--===============================================================================================-->
 </head>
 <body>
+
+	<?php
+
+	include'connect.php';
+
 	
+
+	
+	/*
+	$annual = $connt->query($an);
+	$ro = $annual->fetch_assoc();
+	$x = 0;
+	if($ro['sunday'] == 'Annual' or $ro['sunday'] == 'Emergency' or $ro['sunday'] == 'Eceptional' or $ro['sunday'] == 'Available Annual'){
+	$x++
+}else if($ro['monday'] == 'Annual' or $ro['monday'] == 'Emergency' or $ro['monday'] == 'Eceptional' or $ro['monday'] == 'Available Annual'){
+	$x++
+}else if($ro['tuesday'] == 'Annual' or $ro['tuesday'] == 'Emergency' or $ro['tuesday'] == 'Eceptional' or $ro['tuesday'] == 'Available Annual'){
+	$x++
+}else if($ro['wednesday'] == 'Annual' or $ro['wednesday'] == 'Emergency' or $ro['wednesday'] == 'Eceptional' or $ro['wednesday'] == 'Available Annual'){
+	$x++
+}else if($ro['thursday'] == 'Annual' or $ro['thursday'] == 'Emergency' or $ro['thursday'] == 'Eceptional' or $ro['thursday'] == 'Available Annual'){
+	$x++
+}else if($ro['friday'] == 'Annual' or $ro['friday'] == 'Emergency' or $ro['friday'] == 'Eceptional' or $ro['friday'] == 'Available Annual'){
+	$x++
+}else if($ro['saturday'] == 'Annual' or $ro['saturday'] == 'Emergency' or $ro['saturday'] == 'Eceptional' or $ro['saturday'] == 'Available Annual'){
+	$x++
+}
+
+$re_annual = $ro['balance'] - $x ;
+*/
+
+
+
+
+	?>
 	<div class="limiter">
 	<div class="head1" >
 			
@@ -174,8 +208,7 @@ color:#808080;
 			<area shape="circle"  coords="1259,76,1280,95"  href="../config/change_pass.php" title="Change Password">
 			<?php 
 			if($_SESSION['super'] == 1){
-			?>		
-					<a href="task.php" title="Task"><img class="left1" src="../style/task.png" width="30px" height="30px" style="margin:5px;margin-top:8px" /></a> 
+			?>
 					<a href="oto.php" title="One to One"><img class="left1" src="../style/coaching1.png" width="30px" height="35px" style="margin:5px;" /></a> 
 					<a href="query.php" title="Home"><img class="left1" src="../style/home1.png" width="25px" height="25px" style="margin:5px; margin-top:11px; margin-right: 10px; " /></a> 
 					
@@ -215,6 +248,7 @@ color:#808080;
 								<th class="column100 column9" data-column="column9">Saturday</th>
 							<?php if($_SESSION['super'] == 1){
 								?> <th class="column100 column10" data-column="column10" rowspan="2">Priority</th>
+								<th class="column100 column11" data-column="column11" rowspan="2">Remaining Annual</th>
 								<?php
 							} ?>
 							</tr>
@@ -276,7 +310,7 @@ while($x > 0){
 					
 			<?php	
 				/******************************************************************************/
-			include'connect.php';
+			
 			
 			
 				$teamid = $_SESSION['teamid'];	
@@ -326,7 +360,7 @@ while($x > 0){
 					<input type="submit" name="update"  class="submit" style="width: 66px; height:24px; display:unset; margin-left: 10px;" value="Update">
 					
 				</form>
-				<form action="export.php" method="get">
+				<form action="test.php" method="get">
 					
 				<input type="submit" name="export"  class="submit" style="width: 90px; height:24px; display:unset; margin-left: 10px; float: right;margin-right: 15px;" value="Export">
 				<!--
@@ -348,6 +382,7 @@ while($x > 0){
 				<?php
 
 				/*****************************************************************************************************************************************************/
+			
 
 				if ($_SESSION['super'] == 1){
 				?>
@@ -357,12 +392,8 @@ while($x > 0){
 				<?php
 				$id = $_SESSION['id'];	
 
-				
+			
 				$sql = "select * from sp where team_id ='$teamid' ";
-				
-
-				
-				
 				
 				$result = $connt->query($sql);
 
@@ -398,7 +429,6 @@ while($x > 0){
 						<option value="5 PM" > 5 PM </option>
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
-						<option value="UnPaid" > UnPaid </option>
 					</select>
 				</td>
 				
@@ -421,7 +451,6 @@ while($x > 0){
 						<option value="5 PM" > 5 PM </option>
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
-						<option value="UnPaid" > UnPaid </option>
 					</select>
 
 				</td>
@@ -445,7 +474,6 @@ while($x > 0){
 						<option value="5 PM" > 5 PM </option>
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
-						<option value="UnPaid" > UnPaid </option>
 					</select>
 				</td>
 				<td class="column100 column6" data-column="column6">
@@ -467,7 +495,6 @@ while($x > 0){
 						<option value="5 PM" > 5 PM </option>
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
-						<option value="UnPaid" > UnPaid </option>
 					</select>
 				</td>
 				<td class="column100 column7" data-column="column7">
@@ -489,7 +516,6 @@ while($x > 0){
 						<option value="5 PM" > 5 PM </option>
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
-						<option value="UnPaid" > UnPaid </option>
 					</select>
 
 				</td>
@@ -512,7 +538,6 @@ while($x > 0){
 						<option value="5 PM" > 5 PM </option>
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
-						<option value="UnPaid" > UnPaid </option>
 					</select>
 
 				</td>
@@ -536,9 +561,9 @@ while($x > 0){
 						<option value="5 PM" > 5 PM </option>
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
-						<option value="UnPaid" > UnPaid </option>
 					</select>
 				</td>
+
 
 
 				<td class="column100 column10" data-column="column10">
@@ -548,6 +573,11 @@ while($x > 0){
 						<option value="Priority" > Priority</option>
 						
 					</select>
+				<td class="column100 column11" data-column="column11">
+					<?php echo /*$row['annual_balance']*/ 'Soon'  ; ?>
+
+				<td>
+
 				</td>
 			</tr>
 			
@@ -561,13 +591,24 @@ while($x > 0){
 		
 		<?php
 		
-} else {
-	
+} else{
+		
 		$id = $_SESSION['id'] ;
 		$sql = "select * from sp where id = '$id' ";
+
+		include'config/agent_annual.php';
+		 
+
+
+		
+
+
 		$result = $connt->query($sql);
 		$row = $result->fetch_assoc();
 		?>
+		<div style="text-align:center;margin-bottom:5px;">
+					<span> Your remaining Annual: <?php echo /*$remaining_annual*/ 'Soon'   ; ?> </span>
+				</div>
 		<form action="update1.php" method="post">
 		<tr class="row100">
 				<td class="column100 column1" data-column="column1" style="padding-left: 20px;"><?php echo $row['name']; ?></td>
@@ -663,7 +704,7 @@ while($x > 0){
 						<option value="------------"  > ------------</option>
 						<option value="Annual"  > Annual</option>
 						
-						<option value="Planned Sick" > Planned Sick </option>
+					
 						
 					</select>
 				<?php	
@@ -752,97 +793,14 @@ while($x > 0){
 				<?php
 				}
 				
-			}	
+		}		
 				
 		
 		
-		/*
-		<form action="update1.php" method="post">
-		<tr class="row100">
-				<td class="column100 column1" data-column="column1" style="padding-left: 20px;"><?php echo $row['name']; ?></td>
-				<td class="column100 column2" data-column="column2" style="width:140px;"><input type="hidden" name="id" value="<?php echo $row['id']; ?>" ><?php echo $row['id']; ?> </td>
-				<td class="column100 column3" data-column="column3">
-					<select name="sun"  class="text" >
-						<option value="<?php echo $row['sunday']; ?>" style="color:#a9a8a882;"    selected> <?php echo $row['sunday']; ?> </option>
-						<option value="------------"  > ------------</option>
-						<option value="Annual"  > Annual</option>
-						
-						
-						
-					</select>
-				</td>
-				
-				<td class="column100 column4" data-column="column4">
-				<select name="mon"  class="text" >
-						<option value="<?php echo $row['monday']; ?>" style="color:#a9a8a882;"    selected> <?php echo $row['monday']; ?> </option>
-						<option value="------------"  > ------------</option>
-						<option value="Annual"  > Annual</option>
-						
-						
-						
-					</select>
+		
+			
 
-				</td>
-				
-				<td class="column100 column5" data-column="column5">
-				<select name="tues"  class="text" >
-						<option value="<?php echo $row['tuesday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['tuesday']; ?> </option>
-						<option value="------------"  > ------------</option>
-						<option value="Annual"  > Annual</option>
-						
-						
-						
-					</select>
-				</td>
-				<td class="column100 column6" data-column="column6">
-				<select name="wednes"  class="text" >
-						<option value="<?php echo $row['wednesday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['wednesday']; ?> </option>
-						<option value="------------"  > ------------</option>
-						<option value="Annual"  > Annual</option>
-						
-						<option value="Planned Sick" > Planned Sick </option>
-						
-					</select>
-				</td>
-				<td class="column100 column7" data-column="column7">
-				<select name="thurs"  class="text" >
-						<option value="<?php echo $row['thursday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['thursday']; ?> </option>
-						<option value="------------" > ------------</option>
-						<option value="Annual" > Annual</option>
-						
-						
-						
-					</select>
 
-				</td>
-				<td class="column100 column8" data-column="column8">
-				<select name="fri"  class="text" >
-						<option value="<?php echo $row['friday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['friday']; ?> </option>
-						<option value="------------" > ------------</option>
-						<option value="Annual" > Annual</option>
-						
-						
-						
-					</select>
-
-				</td>
-				
-				<td class="column100 column9" data-column="column9">
-				<select name="satur"  class="text" >
-						<option value="<?php echo $row['saturday']; ?>" style="color:#a9a8a882;"   selected > <?php echo $row['saturday']; ?> </option>
-						<option value="------------" > ------------</option>
-						<option value="Annual" > Annual</option>
-						
-						
-						
-					</select>
-				</td>
-			</tr>
-			<?php
-
-}
-}		
-*/
 		?>
 		</tbody>
 			
