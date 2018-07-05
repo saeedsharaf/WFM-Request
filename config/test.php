@@ -89,6 +89,7 @@ $sun_startdate = strtotime("monday 0 week");
 	}
 
 	$sql="select * from p_sp";
+	$sql_refund = "select * from p_sp where r_oracle != ''";
 
 }else {
  	$sun_startdate = strtotime("monday +1 week");
@@ -111,9 +112,11 @@ $sun_startdate = strtotime("monday 0 week");
 		}
 
 $sql="select * from sp";
+$sql_refund = "select * from sp where r_oracle != ''";
 }
 
 $result = $connt->query($sql);
+$refund_result = $connt->query($sql_refund);
 
 if($result->num_rows > 0){
 
@@ -331,10 +334,11 @@ $row = 3; // 1-based index
 
 
 
-//create anew sheet for one to one 
+//create anew sheet for refund team 
 $objWorkSheet = $objPHPExcel->createSheet(4);
-$result = $connt->query($sql);
-if($result->num_rows > 0){
+
+$refund_result = $connt->query($sql_refund);
+if($refund_result->num_rows > 0){
 	
 
 $objPHPExcel->setActiveSheetIndex(4)->setCellValueByColumnAndRow('0', '1','Name');
@@ -347,12 +351,12 @@ $objPHPExcel->setActiveSheetIndex(4)->mergeCells('C1:C2');
 $row = 3; // 1-based index
 
 
-while($rows = $result->fetch_assoc()){
+while($rowss = $refund_result->fetch_assoc()){
 
 
-		$objPHPExcel->setActiveSheetIndex(4)->setCellValueByColumnAndRow('0', $row, $rows['r_name']);
-        $objPHPExcel->setActiveSheetIndex(4)->setCellValueByColumnAndRow('1', $row, $rows['r_oracle']);
-        $objPHPExcel->setActiveSheetIndex(4)->setCellValueByColumnAndRow('2', $row, $rows['r_sv']);
+		$objPHPExcel->setActiveSheetIndex(4)->setCellValueByColumnAndRow('0', $row, $rowss['r_name']);
+        $objPHPExcel->setActiveSheetIndex(4)->setCellValueByColumnAndRow('1', $row, $rowss['r_oracle']);
+        $objPHPExcel->setActiveSheetIndex(4)->setCellValueByColumnAndRow('2', $row, $rowss['r_sv']);
 
 $row++;
 
