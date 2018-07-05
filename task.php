@@ -177,6 +177,13 @@ color:#808080;
 			?>
 					<a href="task.php" title="Task"><img class="left1" src="../style/task.png" width="30px" height="30px" style="margin:5px;margin-top:8px" /></a>
 					<a href="oto.php" title="One to One"><img class="left1" src="../style/coaching1.png" width="30px" height="35px" style="margin:5px;" /></a> 
+					<?php
+					if($_SESSION['id'] == 9){
+						?>
+					<a href="refund.php" title="Refund Team"><img class="left1" src="../style/refund.png" width="30px" height="30px" style="margin:5px;margin-top:8px" /></a>
+					<?php
+					}
+					?>
 					<a href="query.php" title="Home"><img class="left1" src="../style/home1.png" width="25px" height="25px" style="margin:5px; margin-top:11px; margin-right: 10px; " /></a> 
 					
 					<?php
