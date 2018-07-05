@@ -166,11 +166,7 @@ color:#808080;
 <body>
 
 
-	<?php
-include'search.php';
 
-?>
-	
 	<div class="limiter">
 	<div class="head1" >
 			
@@ -235,7 +231,27 @@ include'search.php';
 	<form action="" method="post">
 		<?php 
 		$x = 0;
+		
+		
+		
+		
+			include'search.php';
+			$sql = "select * from sp where r_oracle !='' ";
+		$result = $connt->query($sql);
+
+		if($result->num_rows > 0){
+			while($row = $result->fetch_assoc()){
+			$name[] = $row['r_name'];
+			$id[] = $row['r_oracle'];
+			$sv[] = $row['r_sv'];	
+			}
+		}
+			
+	
+
+
 		while($x < 15){
+			
 			
 			?>
 	<tr class="row100">
