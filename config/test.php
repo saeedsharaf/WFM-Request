@@ -331,6 +331,38 @@ $row = 3; // 1-based index
 
 
 
+//create anew sheet for one to one 
+$objWorkSheet = $objPHPExcel->createSheet(4);
+$result = $connt->query($sql);
+if($result->num_rows > 0){
+	
+
+$objPHPExcel->setActiveSheetIndex(4)->setCellValueByColumnAndRow('0', '1','Name');
+$objPHPExcel->setActiveSheetIndex(4)->mergeCells('A1:A2');
+$objPHPExcel->setActiveSheetIndex(4)->setCellValueByColumnAndRow('1', '1','Orcale ID');
+$objPHPExcel->setActiveSheetIndex(4)->mergeCells('B1:B2');
+$objPHPExcel->setActiveSheetIndex(4)->setCellValueByColumnAndRow('2', '1','SV');
+$objPHPExcel->setActiveSheetIndex(4)->mergeCells('C1:C2');
+
+$row = 3; // 1-based index
+
+
+while($rows = $result->fetch_assoc()){
+
+
+		$objPHPExcel->setActiveSheetIndex(4)->setCellValueByColumnAndRow('0', $row, $rows['r_name']);
+        $objPHPExcel->setActiveSheetIndex(4)->setCellValueByColumnAndRow('1', $row, $rows['r_oracle']);
+        $objPHPExcel->setActiveSheetIndex(4)->setCellValueByColumnAndRow('2', $row, $rows['r_sv']);
+
+$row++;
+
+}
+
+	}
+
+	
+	$objPHPExcel->setActiveSheetIndex(4)->setTitle('Refund Team');	
+
 
 
 
