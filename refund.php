@@ -209,9 +209,9 @@ color:#808080;
 			-->
 		</div>
 		
-		<div class="container-table100" style="align-items: unset;width:unset">
+		<div class="container-table100" style="align-items: unset;">
 		
-			<div class="wrap-table100"  >
+			<div class="wrap-table100" style="width:100%" >
 			
 			
 			
@@ -227,7 +227,9 @@ color:#808080;
 								<th class="column100 column1" data-column="column1" rowspan="2" style="padding:0px ">Name</th>
 								<th class="column100 column1" data-column="column1" rowspan="2" style="padding:0px ">SV</th>
 							</tr>	
-						<tbody>
+						</thead>
+						<tbody>	
+	
 	<form action="" method="post">
 		<?php 
 		$x = 0;

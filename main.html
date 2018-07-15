@@ -374,7 +374,7 @@ while($x > 0){
 					<input type="submit" name="update"  class="submit" style="width: 66px; height:24px; display:unset; margin-left: 10px;" value="Update">
 					
 				</form>
-				<form action="test.php" method="get">
+				<form action="export.php" method="get">
 					
 				<input type="submit" name="export"  class="submit" style="width: 90px; height:24px; display:unset; margin-left: 10px; float: right;margin-right: 15px;" value="Export">
 				<!--
@@ -426,8 +426,8 @@ while($x > 0){
 				<td class="column100 column2" data-column="column2" style="width:140px;"><?php echo $row['id']; ?> <input type="hidden" name="id[]"  value="<?php echo $row['id']; ?>"> </td>
 				<td class="column100 column3" data-column="column3">
 					<select name="sun[]"  class="text" >
-						<option value="<?php echo $row['sunday']; ?>" style="color:#80808082;"   selected > <?php echo $row['sunday']; ?> </option>
-						<option value="-----------------" > ----------------- </option>
+						<option value="<?php echo $row['sunday']; ?>" style="color:#80808082;"   selected > <?php echo $row['sunday']; ?> </option> 
+						<option value="" >  </option>
 						<option value="Annual" > Annual</option>
 						<option value="Day OFF" > Day OFF </option>
 						<option value="Planned Sick" > Planned Sick </option>
@@ -450,7 +450,7 @@ while($x > 0){
 				<td class="column100 column4" data-column="column4">
 				<select name="mon[]"  class="text" >
 						<option value="<?php echo $row['monday']; ?>" style="color:#a9a8a882;"    selected> <?php echo $row['monday']; ?> </option>
-						<option value="----------------" > ---------------- </option>
+						<option value="" >  </option>
 						<option value="Annual" > Annual</option>
 						<option value="Day OFF" > Day OFF </option>
 						<option value="Planned Sick" > Planned Sick </option>
@@ -474,7 +474,7 @@ while($x > 0){
 				<td class="column100 column5" data-column="column5">
 				<select name="tues[]"  class="text" >
 						<option value="<?php echo $row['tuesday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['tuesday']; ?> </option>
-						<option value="------------" > ------------</option>
+						<option value="" ></option>
 						<option value="Annual" > Annual</option>
 						<option value="Day OFF" > Day OFF </option>
 						<option value="Planned Sick" > Planned Sick </option>
@@ -496,7 +496,7 @@ while($x > 0){
 				<td class="column100 column6" data-column="column6">
 				<select name="wednes[]"  class="text" >
 						<option value="<?php echo $row['wednesday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['wednesday']; ?> </option>
-						<option value="------------" > ------------</option>
+						<option value="" > </option>
 						<option value="Annual" > Annual</option>
 						<option value="Day OFF" > Day OFF </option>
 						<option value="Planned Sick" > Planned Sick </option>
@@ -518,7 +518,7 @@ while($x > 0){
 				<td class="column100 column7" data-column="column7">
 				<select name="thurs[]"  class="text" >
 						<option value="<?php echo $row['thursday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['thursday']; ?> </option>
-						<option value="------------" > ------------</option>
+						<option value="" > </option>
 						<option value="Annual" > Annual</option>
 						<option value="Day OFF" > Day OFF </option>
 						<option value="Planned Sick" > Planned Sick </option>
@@ -541,7 +541,7 @@ while($x > 0){
 				<td class="column100 column8" data-column="column8">
 				<select name="fri[]"  class="text" >
 						<option value="<?php echo $row['friday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['friday']; ?> </option>
-						<option value="------------" > ------------</option>
+						<option value="" > </option>
 						<option value="Annual" > Annual</option>
 						<option value="Day OFF" > Day OFF </option>
 						<option value="Planned Sick" > Planned Sick </option>
@@ -565,7 +565,7 @@ while($x > 0){
 				<td class="column100 column9" data-column="column9">
 				<select name="satur[]"  class="text" >
 						<option value="<?php echo $row['saturday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['saturday']; ?> </option>
-						<option value="------------" > ------------</option>
+						<option value="" > </option>
 						<option value="Annual" > Annual</option>
 						<option value="Day OFF" > Day OFF </option>
 						<option value="Planned Sick" > Planned Sick </option>

@@ -337,7 +337,7 @@ while($x > 0){
 				<td class="column100 column3" data-column="column3">
 					<select name="sun[]"  class="text" >
 						<option value="<?php echo $row['o_sunday']; ?>" style="color:#80808082;"   selected > <?php echo $row['o_sunday']; ?> </option>
-						<option value="-----------------" > ----------------- </option>
+						<option value="" >  </option>
 						<option value="One to One" > One to One</option>
 						
 					</select>
@@ -346,7 +346,7 @@ while($x > 0){
 				<td class="column100 column4" data-column="column4">
 				<select name="mon[]"  class="text" >
 						<option value="<?php echo $row['o_monday']; ?>" style="color:#a9a8a882;"    selected> <?php echo $row['o_monday']; ?> </option>
-						<option value="----------------" > ---------------- </option>
+						<option value="" >  </option>
 						<option value="One to One " > One to One </option>
 						
 					</select>
@@ -356,7 +356,7 @@ while($x > 0){
 				<td class="column100 column5" data-column="column5">
 				<select name="tues[]"  class="text" >
 						<option value="<?php echo $row['o_tuesday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['o_tuesday']; ?> </option>
-						<option value="------------" > ------------</option>
+						<option value="" > </option>
 						<option value="One to One " > One to One </option>
 						
 					</select>
@@ -364,7 +364,7 @@ while($x > 0){
 				<td class="column100 column6" data-column="column6">
 				<select name="wednes[]"  class="text" >
 						<option value="<?php echo $row['o_wednesday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['o_wednesday']; ?> </option>
-						<option value="------------" > ------------</option>
+						<option value="" > </option>
 						<option value="One to One " > One to One </option>
 						
 					</select>
@@ -372,7 +372,7 @@ while($x > 0){
 				<td class="column100 column7" data-column="column7">
 				<select name="thurs[]"  class="text" >
 						<option value="<?php echo $row['o_thursday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['o_thursday']; ?> </option>
-						<option value="------------" > ------------</option>
+						<option value="" > </option>
 						<option value="One to One " > One to One </option>
 						
 					</select>
@@ -381,7 +381,7 @@ while($x > 0){
 				<td class="column100 column8" data-column="column8">
 				<select name="fri[]"  class="text" >
 						<option value="<?php echo $row['o_friday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['o_friday']; ?> </option>
-						<option value="------------" > ------------</option>
+						<option value="" > </option>
 						<option value="One to One " > One to One </option>
 						
 					</select>
@@ -391,7 +391,7 @@ while($x > 0){
 				<td class="column100 column9" data-column="column9">
 				<select name="satur[]"  class="text" >
 						<option value="<?php echo $row['o_saturday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['o_saturday']; ?> </option>
-						<option value="------------" > ------------</option>
+						<option value="" > </option>
 						<option value="One to One " > One to One </option>
 						
 					</select>
