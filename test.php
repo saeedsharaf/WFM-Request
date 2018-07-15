@@ -1,59 +1,26 @@
 <?php
-/*
-$today = date('m-d');
-$tuesday = strtotime("tuesday 1 week ");
-echo date('m-d',$tuesday);
+include'config/connect.php';
 
-if(date("m-d") == date("m-d",$tuesday)){
-echo 'right';
+$check = "select st from sp"; // select data base previous data bas to check edit 
+	$ch_result = $connt->query($check);
+	$rows = $ch_result->fetch_assoc();
+	if( $rows['st'] == 1){
+		$del = "delete from p_sp";
+		$connt->query($del); // delete previous table
 
-}else{
-	echo 'not';
-}
-*/
+		$sql = "insert into p_sp select * from sp";
+		$connt->query($sql);
+		
+		$reset ="UPDATE  sp SET  sunday = '', sunli ='0', monday ='', monli ='0', tuesday ='', tuesli ='0', wednesday ='', wednesli ='0', thursday ='', thursli ='0', friday ='', frili ='0', saturday ='', saturli ='0' , st = '0' , pr = '', tdate='' , ttime= '', o_sunday='', o_monday = '' , o_tuesday = '', o_wednesday = '', o_thursday = '' , o_friday = '', o_saturday = '', fr = '', t_sunday='', t_monday='', t_tuesday='', t_wednesday='', t_thursday='', t_friday='', t_saturday='', t_from='', t_to='' , r_oracle = '', r_name = '', r_sv = '' ";
+		$connt->query($reset);
+	}
 
-$sun_startdate = strtotime("monday 0 week");
-$sun_enddate = strtotime("-2",$sun_startdate);
-	$x = 2;
-	$s = 2;
+	if($connt->query($reset) === true){
+		echo 'done' ;
 
-	
-while($x > 0){
-	
-	$day[] = date("m-d-Y", $sun_startdate) ;
-	$s++; 
-	$x--;
+	}else{
+		echo 'not';
+	}
 
-	$sun_startdate = strtotime("-1 day", $sun_startdate);
-	//echo $s . '<br>';
-}
 
 		?>
-		  <th class="column100 column<?php echo $s ; ?>" data-column="column<?php echo $s ; ?>"><?php echo $day[1]; ?> </th>
-		<?php
-
-
-
-	$s= 4;
-
-		$startdate=strtotime("monday 0 week ");
-		$enddate=strtotime("+6 day", $startdate);
-		
-
-		while ($startdate < $enddate) {
-		  $days = date("m-d-Y", $startdate);
-		 $s++; 
-
-		?>
-		  <th class="column100 column<?php echo $s ; ?>" data-column="column<?php echo $s ; ?>"><?php echo $days; ?> </th>
-		<?php
-		 // echo $days.'<br>';
-		  //echo $s . '<br>';
-		  
-		  
-		  
-		  $startdate = strtotime("+1 day", $startdate);
-		}
-
-		
-?>
