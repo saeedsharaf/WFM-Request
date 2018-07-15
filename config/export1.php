@@ -1,12 +1,9 @@
 <?php
-error_reporting(0);
+
+
 include'connect.php';
 require_once 'classes/phpexcel.php';
 $objPHPExcel = new PHPExcel();
-
-
-
-$special_request = '';
 
 if($_GET['select'] == 'pervious'){	
 $sun_startdate = strtotime("monday 0 week");
@@ -90,11 +87,8 @@ $sql_refund = "select * from sp where r_oracle != ''";
 }
 
 
-
-
-
 $result = $connt->query($annual);
-
+$refund_result = $connt->query($sql_refund);
 
 if($result->num_rows > 0){
 
@@ -175,7 +169,7 @@ while($rows = $result->fetch_assoc()) {
 }
 };
 
-$objPHPExcel->getActiveSheet()->setTitle('Annual ');
+$objPHPExcel->getActiveSheet(0)->setTitle('Annual ');
 
 
 
@@ -344,11 +338,15 @@ $row = 3; // 1-based index
 
 		$objPHPExcel->setActiveSheetIndex(3)->setTitle('Task'); // rename sheet	
 
+
+
 //create anew sheet for refund team 
 $objWorkSheet = $objPHPExcel->createSheet(4);
 
 $refund_result = $connt->query($sql_refund);
 if($refund_result->num_rows > 0){
+	
+
 $objPHPExcel->setActiveSheetIndex(4)->setCellValueByColumnAndRow('0', '1','Name');
 $objPHPExcel->setActiveSheetIndex(4)->mergeCells('A1:A2');
 $objPHPExcel->setActiveSheetIndex(4)->setCellValueByColumnAndRow('1', '1','Orcale ID');
@@ -371,13 +369,11 @@ $row++;
 }
 
 	}
-	
 
-	$objPHPExcel->setActiveSheetIndex(4)->setTitle('Refund Team'); // rename sheet	
 	
+	$objPHPExcel->setActiveSheetIndex(4)->setTitle('Refund Team');	
 
 //create anew sheet for day off
-
 $objWorkSheet = $objPHPExcel->createSheet(5);
 $dayoff_result = $connt->query($dayoff);	
 
@@ -406,51 +402,51 @@ $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('8', '2',$days[
 $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('9', '2',$days[5]);
 
 $row = 3; // 1-based index
-while($rowa = $dayoff_result->fetch_assoc()){
+while($rows = $dayoff_result->fetch_assoc()) {
 
-	if($rowa['sunday'] != 'Day OFF' ){
+	if($rows['sunday'] != 'Day OFF' ){
 
-		$rowa['sunday'] = '' ;
-
-	}
-
-	 if ($rowa['monday'] != 'Day OFF' ){
-
-		$rowa['monday'] = '' ;
+		$rows['sunday'] = '' ;
 
 	}
 
- 	if ($rowa['tuesday'] != 'Day OFF' ) {
-		$rowa['tuesday'] = '' ;
+	 if ($rows['monday'] != 'Day OFF' ){
+
+		$rows['monday'] = '' ;
+
 	}
 
-	if ($rowa['wednesday'] != 'Day OFF' ) {
-		$rowa['wednesday'] = '' ;
+ 	if ($rows['tuesday'] != 'Day OFF' ) {
+		$rows['tuesday'] = '' ;
 	}
 
-	if ($rowa['thursday'] != 'Day OFF' ) {
-		$rowa['thursday'] = '' ;
+	if ($rows['wednesday'] != 'Day OFF' ) {
+		$rows['wednesday'] = '' ;
 	}
 
-	if ($rowa['friday'] != 'Day OFF' ) {
-		$rowa['friday'] = '' ;
+	if ($rows['thursday'] != 'Day OFF' ) {
+		$rows['thursday'] = '' ;
 	}
 
-	if ($rowa['saturday'] != 'Day OFF') {
-		$rowa['saturday'] = '' ;
+	if ($rows['friday'] != 'Day OFF' ) {
+		$rows['friday'] = '' ;
+	}
+
+	if ($rows['saturday'] != 'Day OFF') {
+		$rows['saturday'] = '' ;
 	}
     
    
-        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('0', $row, $rowa['name']);
-        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('1', $row, $rowa['id']);
-        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('2', $row, $rowa['sv']);
-        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('3', $row, $rowa['sunday']);
-        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('4', $row, $rowa['monday']);
-        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('5', $row, $rowa['tuesday']);
-        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('6', $row, $rowa['wednesday']);
-        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('7', $row, $rowa['thursday']);
-        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('8', $row, $rowa['friday']);
-        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('9', $row, $rowa['saturday']);
+        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('0', $row, $rows['name']);
+        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('1', $row, $rows['id']);
+        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('2', $row, $rows['sv']);
+        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('3', $row, $rows['sunday']);
+        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('4', $row, $rows['monday']);
+        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('5', $row, $rows['tuesday']);
+        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('6', $row, $rows['wednesday']);
+        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('7', $row, $rows['thursday']);
+        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('8', $row, $rows['friday']);
+        $objPHPExcel->setActiveSheetIndex(5)->setCellValueByColumnAndRow('9', $row, $rows['saturday']);
       
        
     
@@ -462,13 +458,11 @@ $objPHPExcel->getActiveSheet(5)->setTitle('Day OFF');
 
 
 
-
 //create anew sheet for special request
 $objWorkSheet = $objPHPExcel->createSheet(6);
-
 $special_request_result = $connt->query($special_request);	
 
-if($dayoff_result->num_rows > 0){
+if($special_request_result->num_rows > 0){
 
 $objPHPExcel->setActiveSheetIndex(6)->setCellValueByColumnAndRow('0', '1','Name');
 $objPHPExcel->setActiveSheetIndex(6)->mergeCells('A1:A2');
@@ -493,7 +487,7 @@ $objPHPExcel->setActiveSheetIndex(6)->setCellValueByColumnAndRow('8', '2',$days[
 $objPHPExcel->setActiveSheetIndex(6)->setCellValueByColumnAndRow('9', '2',$days[5]);
 
 $row = 3; // 1-based index
-while($rows = $special_request_result->fetch_assoc()){
+while($rows = $special_request_result->fetch_assoc()) {
 
 	if($rows['sunday'] != 'Planned Sick' and $rows['sunday'] != 'UnPaid' ){
 
@@ -542,9 +536,9 @@ while($rows = $special_request_result->fetch_assoc()){
     
     $row++;
 }
-}
+};
 
-$objPHPExcel->getActiveSheet(6)->setTitle('Special Request');
+$objPHPExcel->getActiveSheet(6)->setTitle('Special Request ');
 
 
 
@@ -673,7 +667,42 @@ $objPHPExcel->getActiveSheet(7)->setTitle('Special Shifts ');
 
 	$objPHPExcel->setActiveSheetIndex(0);
 
+/*
+// Add some data
+$objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue('A1', 'Hello')
+            ->setCellValue('B2', 'world!')
+            ->setCellValue('C1', 'Hello')
+            ->setCellValue('D2', 'world!');
 
+// Miscellaneous glyphs, UTF-8
+$objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue('A4', 'Miscellaneous glyphs')
+            ->setCellValue('A5', 'éàèùâêîôûëïüÿäöüç');
+            
+
+// Rename worksheet
+//$objPHPExcel->getActiveSheet()->setTitle('Simple');
+
+
+// Set active sheet index to the first sheet, so Excel opens this as the first sheet
+//$objPHPExcel->setActiveSheetIndex(0);
+
+$objWorkSheet = $objPHPExcel->createSheet(1);
+
+//while($row = $result->fetch_array()){
+ 
+ $objPHPExcel->setActiveSheetIndex(1)
+ 			->setCellValue('A1', 'Hello')
+            ->setCellValue('B2', 'world!')
+            ->setCellValue('C1', 'Hello')
+            ->setCellValue('D2', 'world!');
+            
+$objPHPExcel->getActiveSheet()->setTitle('saeed');
+
+
+//$objPHPExcel->setActiveSheetIndex(0);
+*/
 
 // Redirect output to a client’s web browser (Excel5)
 header('Content-Type: application/vnd.ms-excel');
