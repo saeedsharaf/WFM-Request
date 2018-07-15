@@ -526,7 +526,7 @@ $objPHPExcel->getActiveSheet(5)->setTitle('Day OFF ');
 $objWorkSheet = $objPHPExcel->createSheet(6);
 $special_request_result = $connt->query($special_request);	
 
-if($dayoff_result->num_rows > 0){
+if($special_request_result->num_rows > 0){
 
 $objPHPExcel->setActiveSheetIndex(6)->setCellValueByColumnAndRow('0', '1','Name');
 $objPHPExcel->setActiveSheetIndex(6)->mergeCells('A1:A2');
