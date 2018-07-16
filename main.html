@@ -595,7 +595,7 @@ while($x > 0){
 						
 					</select>
 				<td class="column100 column11" data-column="column11">
-					<?php echo /*$row['annual_balance']*/ 'Soon'  ; ?>
+					<?php echo $row['annual_balance'] ; ?>
 
 				<td>
 
@@ -628,7 +628,7 @@ while($x > 0){
 		$row = $result->fetch_assoc();
 		?>
 		<div style="text-align:center;margin-bottom:5px;">
-					<span> Your remaining Annual: <?php echo /*$remaining_annual*/ 'Soon'   ; ?> </span>
+					<span> Your remaining Annual: <?php echo $row['annual_balance'] ; ?> </span>
 				</div>
 		<form action="update1.php" method="post">
 		<tr class="row100">
