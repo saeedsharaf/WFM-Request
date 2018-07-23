@@ -175,8 +175,9 @@ color:#808080;
 			<?php 
 			if($_SESSION['super'] == 1){
 			?>
-					<a href="task.php" title="Task"><img class="left1" src="../style/task.png" width="30px" height="30px" style="margin:5px;margin-top:8px" /></a>
-					<a href="oto.php" title="One to One"><img class="left1" src="../style/coaching1.png" width="30px" height="35px" style="margin:5px;" /></a> 
+					<a href="task.php" title="Task"><img class="left1" src="../style/task.png" width="25px" height="25px" style="margin:5px;margin-top:12px" /></a>
+					<a href="oto.php" title="One to One"><img class="left1" src="../style/coaching1.png" width="30px" height="35px" style="margin:5px;" /></a>
+					<a href="../structure/structure.php" title="Structure"><img class="left1" src="../style/struc.png" width="25px" height="30px" style="margin:9px;" /></a> 
 					<?php
 					if($_SESSION['id'] == 9){
 						?>
