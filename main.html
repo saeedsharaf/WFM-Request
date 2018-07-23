@@ -150,12 +150,43 @@ color:#808080;
 	margin-top: 50px;
 }
 
+#alret{
+    height: 100px;
+    width: 30%;
+    background-color: #f35736e8;
+    position: fixed;
+    top: 50%;
+    left: 35%;
+    text-align: center;
+    border-radius: 7px;
+    transition: 0.5s;
+}
+
 
 
 </style>
 <!--===============================================================================================-->
 </head>
-<body>
+<body onclick="out()">
+<div id="alret">
+    <div style="margin-top:20px" ><b>! Note :</b> there is issue with remaining annual with some agent from HR . Case escalated and will be solved ASAP </div>
+</div>
+
+<script>
+
+	function out(){
+    document.getElementById('alret').style.top = "-100px"
+
+    }
+
+
+    function redirect(){
+    	document.getElementById('alret').style.top = "-100px"
+    }                      
+             setTimeout(redirect, 8000);
+
+                
+                </script>
 
 	<?php
 
@@ -646,7 +677,7 @@ while($x > 0){
 				?>
 				<select name="sun"  class="text" >
 						<option value="<?php echo $row['sunday']; ?>" style="color:#a9a8a882;"    selected> <?php echo $row['sunday']; ?> </option>
-						<option value="------------"  > ------------</option>
+						<option value=""  > </option>
 						<option value="Annual"  > Annual</option>
 						
 						
@@ -669,7 +700,7 @@ while($x > 0){
 				
 				<select name="mon"  class="text" >
 						<option value="<?php echo $row['monday']; ?>" style="color:#a9a8a882;"    selected> <?php echo $row['monday']; ?> </option>
-						<option value="------------"  > ------------</option>
+						<option value=""  > </option>
 						<option value="Annual"  > Annual</option>
 						
 						
@@ -696,7 +727,7 @@ while($x > 0){
 				?>
 				<select name="tues"  class="text" >
 						<option value="<?php echo $row['tuesday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['tuesday']; ?> </option>
-						<option value="------------"  > ------------</option>
+						<option value=""  > </option>
 						<option value="Annual"  > Annual</option>
 						
 						
@@ -722,7 +753,7 @@ while($x > 0){
 				?>
 				<select name="wednes"  class="text" >
 						<option value="<?php echo $row['wednesday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['wednesday']; ?> </option>
-						<option value="------------"  > ------------</option>
+						<option value=""  > </option>
 						<option value="Annual"  > Annual</option>
 						
 					
@@ -752,7 +783,7 @@ while($x > 0){
 				?>
 				<select name="thurs"  class="text" >
 						<option value="<?php echo $row['thursday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['thursday']; ?> </option>
-						<option value="------------" > ------------</option>
+						<option value="" > </option>
 						<option value="Annual" > Annual</option>
 						
 						
@@ -777,7 +808,7 @@ while($x > 0){
 				?>
 				<select name="fri"  class="text" >
 						<option value="<?php echo $row['friday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['friday']; ?> </option>
-						<option value="------------" > ------------</option>
+						<option value="" > </option>
 						<option value="Annual" > Annual</option>
 						
 						
@@ -804,7 +835,7 @@ while($x > 0){
 		
 		<select name="satur"  class="text" >
 						<option value="<?php echo $row['saturday']; ?>" style="color:#a9a8a882;"   selected > <?php echo $row['saturday']; ?> </option>
-						<option value="------------" > ------------</option>
+						<option value="" > </option>
 						<option value="Annual" > Annual</option>
 						
 						
