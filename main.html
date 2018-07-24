@@ -168,6 +168,7 @@ color:#808080;
 <!--===============================================================================================-->
 </head>
 <body onclick="out()">
+	<!--
 <div id="alret">
     <div style="margin-top:20px" ><b>! Note :</b> there is issue with remaining annual with some agent from HR . Case escalated and will be solved ASAP </div>
 </div>
@@ -188,6 +189,8 @@ color:#808080;
                 
                 </script>
 
+            -->
+
 	<?php
 
 	include'connect.php';
@@ -195,29 +198,7 @@ color:#808080;
 	
 
 	
-	/*
-	$annual = $connt->query($an);
-	$ro = $annual->fetch_assoc();
-	$x = 0;
-	if($ro['sunday'] == 'Annual' or $ro['sunday'] == 'Emergency' or $ro['sunday'] == 'Eceptional' or $ro['sunday'] == 'Available Annual'){
-	$x++
-}else if($ro['monday'] == 'Annual' or $ro['monday'] == 'Emergency' or $ro['monday'] == 'Eceptional' or $ro['monday'] == 'Available Annual'){
-	$x++
-}else if($ro['tuesday'] == 'Annual' or $ro['tuesday'] == 'Emergency' or $ro['tuesday'] == 'Eceptional' or $ro['tuesday'] == 'Available Annual'){
-	$x++
-}else if($ro['wednesday'] == 'Annual' or $ro['wednesday'] == 'Emergency' or $ro['wednesday'] == 'Eceptional' or $ro['wednesday'] == 'Available Annual'){
-	$x++
-}else if($ro['thursday'] == 'Annual' or $ro['thursday'] == 'Emergency' or $ro['thursday'] == 'Eceptional' or $ro['thursday'] == 'Available Annual'){
-	$x++
-}else if($ro['friday'] == 'Annual' or $ro['friday'] == 'Emergency' or $ro['friday'] == 'Eceptional' or $ro['friday'] == 'Available Annual'){
-	$x++
-}else if($ro['saturday'] == 'Annual' or $ro['saturday'] == 'Emergency' or $ro['saturday'] == 'Eceptional' or $ro['saturday'] == 'Available Annual'){
-	$x++
-}
-
-$re_annual = $ro['balance'] - $x ;
-*/
-
+	
 
 
 
@@ -649,7 +630,7 @@ while($x > 0){
 		$id = $_SESSION['id'] ;
 		$sql = "select * from sp where id = '$id' ";
 
-		include'config/agent_annual.php';
+	
 		 
 
 
@@ -668,7 +649,7 @@ while($x > 0){
 				<td class="column100 column2" data-column="column2" style="width:140px;"><input type="hidden" name="id" value="<?php echo $row['id']; ?>" ><?php echo $row['id']; ?> </td>
 				<td class="column100 column3" data-column="column3">
 				<?php 
-				if($row['sunli'] == 1){
+				if($row['sunli'] == 1 or $row['annual_balance'] < 1){
 					?>
 					
 						<input type="text" value="<?php echo $row['sunday']; ?>" class="dim" readonly name="sun" > 
@@ -691,7 +672,7 @@ while($x > 0){
 				<td class="column100 column4" data-column="column4">
 				
 				<?php
-				if($row['monli'] == 1){
+				if($row['monli'] == 1 or $row['annual_balance'] < 1){
 				?>
 				<input type="text" value="<?php echo $row['monday']; ?>"  class="dim" name="mon" readonly > 
 				</td>
@@ -716,7 +697,7 @@ while($x > 0){
 				
 				<?php
 				
-				if($row['tuesli'] == 1){
+				if($row['tuesli'] == 1 or $row['annual_balance'] < 1){
 				?>
 
 				<input type="text" value="<?php echo $row['tuesday']; ?>" class="dim" name="tues" readonly > 
@@ -744,7 +725,7 @@ while($x > 0){
 				<td class="column100 column6" data-column="column6">
 				
 				<?php
-				if($row['wednesli'] == 1){
+				if($row['wednesli'] == 1 or $row['annual_balance'] < 1){
 				?>
 				<input type="text" value="<?php echo $row['wednesday']; ?>" class="dim" name="wednes" readonly > 
 				</td>
@@ -772,7 +753,7 @@ while($x > 0){
 				
 				<?php
 				
-				if($row['thursli'] == 1){
+				if($row['thursli'] == 1 or $row['annual_balance'] < 1){
 				?>
 				<input type="text" value="<?php echo $row['thursday']; ?>"  class="dim" name="thurs" readonly > 
 
@@ -798,7 +779,7 @@ while($x > 0){
 				
 				<td class="column100 column8" data-column="column8">
 				<?php
-				if($row['frili'] == 1){
+				if($row['frili'] == 1 or $row['annual_balance'] < 1){
 				?>
 				<input type="text" value="<?php echo $row['friday']; ?>"  class="dim" name="fri" readonly > 
 
@@ -823,7 +804,7 @@ while($x > 0){
 				
 				<td class="column100 column9" data-column="column9">
 				<?php
-				if($row['saturli'] == 1){
+				if($row['saturli'] == 1 or $row['annual_balance'] < 1){
 				?>
 				
 				<input type="text" value="<?php echo $row['saturday']; ?>"  class="dim" name="satur" readonly > 
