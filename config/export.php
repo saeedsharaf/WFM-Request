@@ -89,12 +89,71 @@ $shift = "select * from sp where sunday != '' or monday != '' or tuesday != '' o
 $sql_refund = "select * from sp where r_oracle != ''";
 }
 
+// color cell
+function cellColor($cells,$color){
+    global $objPHPExcel;
+
+    $objPHPExcel->setActiveSheetIndex(0)->getStyle($cells)->getFill()->applyFromArray(array(
+        'type' => PHPExcel_Style_Fill::FILL_SOLID,
+        'startcolor' => array(
+             'rgb' => $color
+        )
+    ));
+
+
+}
+
+cellColor('A1:K2', '16365c');
+//fontColor('A1:M1', '16365c');
+
+//cellColor('A17:I17', 'F28A8C');
+//cellColor('A30:Z30', 'F28A8C');
+
+$phpColor = new PHPExcel_Style_Color();
+$phpColor->setRGB('ffffff'); 
+$objPHPExcel->setActiveSheetIndex(0)->getStyle('A1:K2')->getFont()->setColor( $phpColor );
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+// center text
+
+ $style = array(
+        'alignment' => array(
+            'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+        )
+    );
+
+    // auto fit col
+
+   for($col = 'A'; $col !== 'L'; $col++) {
+    $objPHPExcel->setActiveSheetIndex(0)
+        ->getColumnDimension($col)
+        ->setAutoSize(true);
+}
 
 
 
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
 
 $result = $connt->query($annual);
 
+$end_rows = 'K' . ($result->num_rows + 2); // to get number of rows after export
+
+$f = "A1:" . $end_rows ; // to get the range to set border to it  
+//echo $f;
+
+$BStyle = array(
+  'borders' => array(
+    'allborders' => array(
+      'style' => PHPExcel_Style_Border::BORDER_THIN
+    )
+  )
+);
+
+$objPHPExcel->setActiveSheetIndex(0)->getStyle($f)->applyFromArray($BStyle);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 if($result->num_rows > 0){
 
@@ -181,8 +240,72 @@ $objPHPExcel->getActiveSheet()->setTitle('Annual ');
 
 
 //create anew sheet for one to one 
+
+
+
+
+
+////// cell color ///////////////////////////////////////////////
 $objWorkSheet = $objPHPExcel->createSheet(1);
+
+function cellColor1($cells,$color){
+    global $objPHPExcel;
+
+    $objPHPExcel->setActiveSheetIndex(1)->getStyle($cells)->getFill()->applyFromArray(array(
+        'type' => PHPExcel_Style_Fill::FILL_SOLID,
+        'startcolor' => array(
+             'rgb' => $color
+        )
+    ));
+
+
+}
+
+cellColor1('A1:K2', '16365c');
+//fontColor('A1:M1', '16365c');
+
+//cellColor('A17:I17', 'F28A8C');
+//cellColor('A30:Z30', 'F28A8C');
+
+$phpColor = new PHPExcel_Style_Color();
+$phpColor->setRGB('ffffff'); 
+$objPHPExcel->setActiveSheetIndex(1)->getStyle('A1:K2')->getFont()->setColor( $phpColor );
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ $objPHPExcel->setActiveSheetIndex(1)->getStyle('A1:M1322')->applyFromArray($style);
+
+   for($col = 'A'; $col !== 'L'; $col++) {
+    $objPHPExcel->setActiveSheetIndex(1)
+        ->getColumnDimension($col)
+        ->setAutoSize(true);
+}
+
+
+
 $result_oto = $connt->query($oto);
+
+
+///////////////////////////////////////////////////////////////// set border ////////////////////////////////////
+
+$end_rows = 'K' . ($result_oto->num_rows + 2); // to get number of rows after export
+
+$f = "A1:" . $end_rows ; // to get the range to set border to it  
+//echo $f;
+
+$BStyle = array(
+  'borders' => array(
+    'allborders' => array(
+      'style' => PHPExcel_Style_Border::BORDER_THIN
+    )
+  )
+);
+
+$objPHPExcel->setActiveSheetIndex(1)->getStyle($f)->applyFromArray($BStyle);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 if($result_oto->num_rows > 0){
 	
 
@@ -247,7 +370,74 @@ $row++;
 
 //create anew sheet for Team Meeting
 $objWorkSheet = $objPHPExcel->createSheet(2);
+
+
+
+function cellColor2($cells,$color){
+    global $objPHPExcel;
+
+    $objPHPExcel->setActiveSheetIndex(2)->getStyle($cells)->getFill()->applyFromArray(array(
+        'type' => PHPExcel_Style_Fill::FILL_SOLID,
+        'startcolor' => array(
+             'rgb' => $color
+        )
+    ));
+
+
+}
+
+cellColor2('A1:C2', '16365c');
+//fontColor('A1:M1', '16365c');
+
+//cellColor('A17:I17', 'F28A8C');
+//cellColor('A30:Z30', 'F28A8C');
+
+$phpColor = new PHPExcel_Style_Color();
+$phpColor->setRGB('ffffff'); 
+$objPHPExcel->setActiveSheetIndex(2)->getStyle('A1:C2')->getFont()->setColor( $phpColor );
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+  for($col = 'A'; $col !== 'D'; $col++) {
+    $objPHPExcel->setActiveSheetIndex(2)
+        ->getColumnDimension($col)
+        ->setAutoSize(true);
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+
+
+
 $result_meeting = $connt->query($team_meeting);
+
+
+
+///////////////////////////////////////////////////////////////// set border ////////////////////////////////////
+
+$end_rows = 'C' . ($result_meeting->num_rows + 2); // to get number of rows after export
+
+$f = "A1:" . $end_rows ; // to get the range to set border to it  
+//echo $f;
+
+$BStyle = array(
+  'borders' => array(
+    'allborders' => array(
+      'style' => PHPExcel_Style_Border::BORDER_THIN
+    )
+  )
+);
+
+$objPHPExcel->setActiveSheetIndex(2)->getStyle($f)->applyFromArray($BStyle);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 if($result_meeting->num_rows > 0){
 	
 
@@ -289,8 +479,78 @@ $row++;
 
 
 	// crate anew sheet for task
+
+
+
 $objWorkSheet = $objPHPExcel->createSheet(3);
+
+
+
+
+
+//set color ///////////////////////////////////////////////////////////////////////////////////
+function cellColor3($cells,$color){
+    global $objPHPExcel;
+
+    $objPHPExcel->setActiveSheetIndex(3)->getStyle($cells)->getFill()->applyFromArray(array(
+        'type' => PHPExcel_Style_Fill::FILL_SOLID,
+        'startcolor' => array(
+             'rgb' => $color
+        )
+    ));
+
+
+}
+
+cellColor3('A1:L2', '16365c');
+//fontColor('A1:M1', '16365c');
+
+//cellColor('A17:I17', 'F28A8C');
+//cellColor('A30:Z30', 'F28A8C');
+
+$phpColor = new PHPExcel_Style_Color();
+$phpColor->setRGB('ffffff'); 
+$objPHPExcel->setActiveSheetIndex(3)->getStyle('A1:L2')->getFont()->setColor( $phpColor );
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    // auto fit col
+
+   for($col = 'A'; $col !== 'M'; $col++) {
+    $objPHPExcel->setActiveSheetIndex(3)
+        ->getColumnDimension($col)
+        ->setAutoSize(true);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
 $result_task = $connt->query($task);
+
+
+///////////////////////////////////////////////////////////////// set border ////////////////////////////////////
+
+$end_rows = 'L' . ($result_task->num_rows + 2); // to get number of rows after export
+
+$f = "A1:" . $end_rows ; // to get the range to set border to it  
+//echo $f;
+
+$BStyle = array(
+  'borders' => array(
+    'allborders' => array(
+      'style' => PHPExcel_Style_Border::BORDER_THIN
+    )
+  )
+);
+
+$objPHPExcel->setActiveSheetIndex(3)->getStyle($f)->applyFromArray($BStyle);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 if($result_task->num_rows > 0){
 $objPHPExcel->setActiveSheetIndex(3)->setCellValueByColumnAndRow('0', '1','Name');
 $objPHPExcel->setActiveSheetIndex(3)->mergeCells('A1:A2');
@@ -347,7 +607,70 @@ $row = 3; // 1-based index
 //create anew sheet for refund team 
 $objWorkSheet = $objPHPExcel->createSheet(4);
 
+
+//////// set color 
+
+function cellColor4($cells,$color){
+    global $objPHPExcel;
+
+    $objPHPExcel->setActiveSheetIndex(4)->getStyle($cells)->getFill()->applyFromArray(array(
+        'type' => PHPExcel_Style_Fill::FILL_SOLID,
+        'startcolor' => array(
+             'rgb' => $color
+        )
+    ));
+
+
+}
+
+cellColor4('A1:C2', '16365c');
+//fontColor('A1:M1', '16365c');
+
+//cellColor('A17:I17', 'F28A8C');
+//cellColor('A30:Z30', 'F28A8C');
+
+$phpColor = new PHPExcel_Style_Color();
+$phpColor->setRGB('ffffff'); 
+$objPHPExcel->setActiveSheetIndex(4)->getStyle('A1:C2')->getFont()->setColor( $phpColor );
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    // auto fit col
+
+   for($col = 'A'; $col !== 'D'; $col++) {
+    $objPHPExcel->setActiveSheetIndex(4)
+        ->getColumnDimension($col)
+        ->setAutoSize(true);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
 $refund_result = $connt->query($sql_refund);
+
+
+///////////////////////////////////////////////////////////////// set border ////////////////////////////////////
+
+$end_rows = 'C' . ($refund_result->num_rows + 2); // to get number of rows after export
+
+$f = "A1:" . $end_rows ; // to get the range to set border to it  
+//echo $f;
+
+$BStyle = array(
+  'borders' => array(
+    'allborders' => array(
+      'style' => PHPExcel_Style_Border::BORDER_THIN
+    )
+  )
+);
+
+$objPHPExcel->setActiveSheetIndex(4)->getStyle($f)->applyFromArray($BStyle);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 if($refund_result->num_rows > 0){
 $objPHPExcel->setActiveSheetIndex(4)->setCellValueByColumnAndRow('0', '1','Name');
 $objPHPExcel->setActiveSheetIndex(4)->mergeCells('A1:A2');
@@ -379,7 +702,67 @@ $row++;
 //create anew sheet for day off
 
 $objWorkSheet = $objPHPExcel->createSheet(5);
-$dayoff_result = $connt->query($dayoff);	
+
+//////////////////////////////////// set color //////////////////////////////////
+
+function cellColor5($cells,$color){
+    global $objPHPExcel;
+
+    $objPHPExcel->setActiveSheetIndex(5)->getStyle($cells)->getFill()->applyFromArray(array(
+        'type' => PHPExcel_Style_Fill::FILL_SOLID,
+        'startcolor' => array(
+             'rgb' => $color
+        )
+    ));
+
+
+}
+
+cellColor5('A1:J2', '16365c');
+//fontColor('A1:M1', '16365c');
+
+//cellColor('A17:I17', 'F28A8C');
+//cellColor('A30:Z30', 'F28A8C');
+
+$phpColor = new PHPExcel_Style_Color();
+$phpColor->setRGB('ffffff'); 
+$objPHPExcel->setActiveSheetIndex(5)->getStyle('A1:J2')->getFont()->setColor( $phpColor );
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // auto fit col
+
+   for($col = 'A'; $col !== 'K'; $col++) {
+    $objPHPExcel->setActiveSheetIndex(5)
+        ->getColumnDimension($col)
+        ->setAutoSize(true);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+
+$dayoff_result = $connt->query($dayoff);
+
+
+///////////////////////////////////////////////////////////////// set border ////////////////////////////////////
+
+$end_rows = 'J' . ($dayoff_result->num_rows + 2); // to get number of rows after export
+
+$f = "A1:" . $end_rows ; // to get the range to set border to it  
+//echo $f;
+
+$BStyle = array(
+  'borders' => array(
+    'allborders' => array(
+      'style' => PHPExcel_Style_Border::BORDER_THIN
+    )
+  )
+);
+
+$objPHPExcel->setActiveSheetIndex(5)->getStyle($f)->applyFromArray($BStyle);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 if($dayoff_result->num_rows > 0){
 
@@ -466,7 +849,69 @@ $objPHPExcel->getActiveSheet(5)->setTitle('Day OFF');
 //create anew sheet for special request
 $objWorkSheet = $objPHPExcel->createSheet(6);
 
-$special_request_result = $connt->query($special_request);	
+
+
+//////////////////////////////////// set color //////////////////////////////////
+
+function cellColor6($cells,$color){
+    global $objPHPExcel;
+
+    $objPHPExcel->setActiveSheetIndex(6)->getStyle($cells)->getFill()->applyFromArray(array(
+        'type' => PHPExcel_Style_Fill::FILL_SOLID,
+        'startcolor' => array(
+             'rgb' => $color
+        )
+    ));
+
+
+}
+
+cellColor6('A1:J2', '16365c');
+//fontColor('A1:M1', '16365c');
+
+//cellColor('A17:I17', 'F28A8C');
+//cellColor('A30:Z30', 'F28A8C');
+
+$phpColor = new PHPExcel_Style_Color();
+$phpColor->setRGB('ffffff'); 
+$objPHPExcel->setActiveSheetIndex(6)->getStyle('A1:J2')->getFont()->setColor( $phpColor );
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    // auto fit col
+
+   for($col = 'A'; $col !== 'K'; $col++) {
+    $objPHPExcel->setActiveSheetIndex(6)
+        ->getColumnDimension($col)
+        ->setAutoSize(true);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+
+
+$special_request_result = $connt->query($special_request);
+
+///////////////////////////////////////////////////////////////// set border ////////////////////////////////////
+
+$end_rows = 'J' . ($special_request_result->num_rows + 2); // to get number of rows after export
+
+$f = "A1:" . $end_rows ; // to get the range to set border to it  
+//echo $f;
+
+$BStyle = array(
+  'borders' => array(
+    'allborders' => array(
+      'style' => PHPExcel_Style_Border::BORDER_THIN
+    )
+  )
+);
+
+$objPHPExcel->setActiveSheetIndex(6)->getStyle($f)->applyFromArray($BStyle);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 if($dayoff_result->num_rows > 0){
 
@@ -550,7 +995,68 @@ $objPHPExcel->getActiveSheet(6)->setTitle('Special Request');
 
 //create anew sheet for shift
 $objWorkSheet = $objPHPExcel->createSheet(7);
-$shift_result = $connt->query($shift);	
+
+
+//////////////////////////////////// set color //////////////////////////////////
+
+function cellColor7($cells,$color){
+    global $objPHPExcel;
+
+    $objPHPExcel->setActiveSheetIndex(7)->getStyle($cells)->getFill()->applyFromArray(array(
+        'type' => PHPExcel_Style_Fill::FILL_SOLID,
+        'startcolor' => array(
+             'rgb' => $color
+        )
+    ));
+
+
+}
+
+cellColor7('A1:K2', '16365c');
+//fontColor('A1:M1', '16365c');
+
+//cellColor('A17:I17', 'F28A8C');
+//cellColor('A30:Z30', 'F28A8C');
+
+$phpColor = new PHPExcel_Style_Color();
+$phpColor->setRGB('ffffff'); 
+$objPHPExcel->setActiveSheetIndex(7)->getStyle('A1:K2')->getFont()->setColor( $phpColor );
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    // auto fit col
+
+   for($col = 'A'; $col !== 'L'; $col++) {
+    $objPHPExcel->setActiveSheetIndex(7)
+        ->getColumnDimension($col)
+        ->setAutoSize(true);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+
+$shift_result = $connt->query($shift);
+
+
+///////////////////////////////////////////////////////////////// set border ////////////////////////////////////
+
+$end_rows = 'K' . ($shift_result->num_rows + 2); // to get number of rows after export
+
+$f = "A1:" . $end_rows ; // to get the range to set border to it  
+//echo $f;
+
+$BStyle = array(
+  'borders' => array(
+    'allborders' => array(
+      'style' => PHPExcel_Style_Border::BORDER_THIN
+    )
+  )
+);
+
+$objPHPExcel->setActiveSheetIndex(7)->getStyle($f)->applyFromArray($BStyle);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 if($shift_result->num_rows > 0){
 
@@ -669,6 +1175,14 @@ while($rows = $shift_result->fetch_assoc()) {
 $objPHPExcel->getActiveSheet(7)->setTitle('Special Shifts ');
 
 
+$objPHPExcel->setActiveSheetIndex(0)->getStyle('A1:K396')->applyFromArray($style);
+$objPHPExcel->setActiveSheetIndex(1)->getStyle('A1:K396')->applyFromArray($style);
+$objPHPExcel->setActiveSheetIndex(2)->getStyle('A1:C396')->applyFromArray($style);
+$objPHPExcel->setActiveSheetIndex(3)->getStyle('A1:L396')->applyFromArray($style);
+$objPHPExcel->setActiveSheetIndex(4)->getStyle('A1:C396')->applyFromArray($style);
+$objPHPExcel->setActiveSheetIndex(5)->getStyle('A1:J396')->applyFromArray($style);
+$objPHPExcel->setActiveSheetIndex(6)->getStyle('A1:J396')->applyFromArray($style);
+$objPHPExcel->setActiveSheetIndex(7)->getStyle('A1:K396')->applyFromArray($style);
 
 
 	$objPHPExcel->setActiveSheetIndex(0);

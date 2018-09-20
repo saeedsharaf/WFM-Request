@@ -151,12 +151,12 @@ color:#808080;
 }
 
 #alret{
-    height: 100px;
-    width: 30%;
+    height: 58px;
+    width: 25%;
     background-color: #f35736e8;
     position: fixed;
-    top: 50%;
-    left: 35%;
+    top: -100px;
+    left: 40%;
     text-align: center;
     border-radius: 7px;
     transition: 0.5s;
@@ -164,32 +164,42 @@ color:#808080;
 
 
 
+
 </style>
 <!--===============================================================================================-->
 </head>
 <body onclick="out()">
-	<!--
+	
 <div id="alret">
-    <div style="margin-top:20px" ><b>! Note :</b> there is issue with remaining annual with some agent from HR . Case escalated and will be solved ASAP </div>
+    <div style="margin-top:20px" >Ramaining Annual updated Till 1/9/2018 </div>
 </div>
 
 <script>
 
-	function out(){
+                function out(){
     document.getElementById('alret').style.top = "-100px"
 
     }
 
 
-    function redirect(){
-    	document.getElementById('alret').style.top = "-100px"
+
+function redirectin(){
+                document.getElementById('alret').style.top = "10%"
     }                      
-             setTimeout(redirect, 8000);
+            setTimeout(redirectin, 1000);
+
+
+
+    function redirectout(){
+                document.getElementById('alret').style.top = "-100px"
+    }                      
+            setTimeout(redirectout, 4000);
 
                 
                 </script>
 
-            -->
+
+            
 
 	<?php
 
@@ -457,6 +467,7 @@ while($x > 0){
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
 						<option value="UnPaid" > UnPaid </option>
+						<option value="Military" > Military </option>
 					</select>
 				</td>
 				
@@ -480,6 +491,7 @@ while($x > 0){
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
 						<option value="UnPaid" > UnPaid </option>
+						<option value="Military" > Military </option>
 					</select>
 
 				</td>
@@ -504,6 +516,7 @@ while($x > 0){
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
 						<option value="UnPaid" > UnPaid </option>
+						<option value="Military" > Military </option>
 					</select>
 				</td>
 				<td class="column100 column6" data-column="column6">
@@ -526,6 +539,7 @@ while($x > 0){
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
 						<option value="UnPaid" > UnPaid </option>
+						<option value="Military" > Military </option>
 					</select>
 				</td>
 				<td class="column100 column7" data-column="column7">
@@ -548,6 +562,7 @@ while($x > 0){
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
 						<option value="UnPaid" > UnPaid </option>
+						<option value="Military" > Military </option>
 					</select>
 
 				</td>
@@ -571,6 +586,7 @@ while($x > 0){
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
 						<option value="UnPaid" > UnPaid </option>
+						<option value="Military" > Military </option>
 					</select>
 
 				</td>
@@ -595,6 +611,7 @@ while($x > 0){
 						<option value="6 PM" > 6 PM </option>
 						<option value="11 PM" > 11 PM </option>
 						<option value="UnPaid" > UnPaid </option>
+						<option value="Military" > Military </option>
 					</select>
 				</td>
 
