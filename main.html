@@ -169,11 +169,11 @@ color:#808080;
 <!--===============================================================================================-->
 </head>
 <body onclick="out()">
-	
+<!--	
 <div id="alret">
-    <div style="margin-top:20px" >Ramaining Annual updated Till 1/9/2018 </div>
+    <div style="margin-top:20px" >  </div>
 </div>
-
+-->
 <script>
 
                 function out(){
@@ -234,6 +234,7 @@ function redirectin(){
 					<a href="task.php" title="Task"><img class="left1" src="../style/task.png" width="25px" height="25px" style="margin:5px;margin-top:12px" /></a> 
 					<a href="oto.php" title="One to One"><img class="left1" src="../style/coaching1.png" width="30px" height="35px" style="margin:5px;" /></a>
 					<a href="../structure/structure.php" title="Structure"><img class="left1" src="../style/struc.png" width="25px" height="30px" style="margin:9px;" /></a>
+					<a href="avaliable_annual.php" title="Avaliable Annual"><img class="left1" src="../style/928424.png" width="25px" height="30px" style="margin:9px;" /></a>
 					<?php
 					if($_SESSION['id'] == 9){
 						?>
@@ -384,26 +385,48 @@ while($x > 0){
 				//echo $limit;
 			
 				
-				if($_SESSION['id'] == 2 or $_SESSION['id'] == 3){ 
-				$adel = "select * from sp ";
+				if($_SESSION['id'] == 1000 or $_SESSION['id'] == 1004 or $_SESSION['id'] == 12 or $_SESSION['id'] == 22){ 
+				
+				if($_SESSION['id'] == 12 or $_SESSION['id'] == 22 ){
+				$adel = "select * from sp where queue = 'pre' ";
 				$adel1 = $connt->query($adel);
 				$li = $adel1->fetch_assoc();
-				
 				?>
-				<form action="limit.php" method="post" >
+				<form action="limit_pre.php" method="post" >
 					<label style="margin-right: 10px;"> Set limit </label>
 					<input type="number" name="limitation" style="width:35px; text-align:center; display:unset;" value="<?php echo $li['lim']; ?>">
 					
 					<input type="submit" name="update"  class="submit" style="width: 66px; height:24px; display:unset; margin-left: 10px;" value="Update">
 					
 				</form>
+				<?php
+			}
+				if($_SESSION['id'] == 1000 or $_SESSION['id'] == 1004 ){
+				$adel = "select * from sp where queue = 'post' ";
+				$adel1 = $connt->query($adel);
+				$li = $adel1->fetch_assoc();
+				?>
+				<form action="limit_post.php" method="post" >
+					<label style="margin-right: 10px;margin-left: 20px"> Annual limit </label>
+					<input type="number" name="annual_limit" style="width:35px; text-align:center; display:unset;" value="<?php echo $li['annual_limit']; ?>">
+
+					<label style="margin-right: 10px;margin-left: 20px;"> Special limit </label>
+					<input type="number" name="limitation" style="width:35px; text-align:center; display:unset;" value="<?php echo $li['lim']; ?>">
+					
+					<input type="submit" name="update"  class="submit" style="width: 66px; height:24px; display:unset; margin-left: 10px;" value="Update">
+					
+				</form>
+				<?php
+			}
+
+			?>
 				<form action="export.php" method="get">
 					
 				<input type="submit" name="export"  class="submit" style="width: 90px; height:24px; display:unset; margin-left: 10px; float: right;margin-right: 15px;" value="Export">
 				<!--
 				<input type="submit" name="reset"  class="submit" style="width: 90px; height:24px; display:unset; margin-left: 10px; float: right;margin-right: 15px; background-color:#ff295d;" value="Reset"> -->
 
-				<input type="radio" name="select"   value="pervious" style="display: unset; margin-left: 620px" > Pervious Week
+				<input type="radio" name="select"   value="pervious" style="display: unset; margin-left: 510px" > Pervious Week
 				<input type="radio" name="select"   value="current" style="display: unset;margin-left: 15px;" checked> This Week
 
 				</form>

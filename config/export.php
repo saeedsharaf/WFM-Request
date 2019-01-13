@@ -4,11 +4,19 @@ include'connect.php';
 require_once 'classes/phpexcel.php';
 $objPHPExcel = new PHPExcel();
 
-
+$queue = '';    
+    if($_SESSION['id'] == 1000 or $_SESSION['id'] == 1004){
+        $queue = 'post';
+    }else {
+        $queue = 'pre';
+    }
 
 $special_request = '';
 
-if($_GET['select'] == 'pervious'){	
+if($_GET['select'] == 'pervious' ){
+    
+
+
 $sun_startdate = strtotime("monday 0 week");
 	$sun_enddate = strtotime("-2",$sun_startdate); // to back 2 days from monday 
 	$x = 2;
@@ -26,26 +34,26 @@ $sun_startdate = strtotime("monday 0 week");
 	  $startdate = strtotime("+1 day", $startdate);
 	}
 
-$annual="select * from p_sp where sunday = 'Annual' or monday = 'Annual' or tuesday = 'Annual' or wednesday = 'Annual' or thursday = 'Annual' or friday = 'Annual' or saturday = 'Annual'";
+$annual="select * from p_sp where sunday = 'Annual' or monday = 'Annual' or tuesday = 'Annual' or wednesday = 'Annual' or thursday = 'Annual' or friday = 'Annual' or saturday = 'Annual' and queue = '$queue' ";
 //select one to one 
-$oto ="select * from p_sp where o_sunday != '' or o_monday != '' or o_tuesday != '' or o_wednesday != '' or o_thursday != '' or o_friday != '' or o_saturday != ''";
+$oto ="select * from p_sp where o_sunday != '' or o_monday != '' or o_tuesday != '' or o_wednesday != '' or o_thursday != '' or o_friday != '' or o_saturday != '' and queue = '$queue'";
 // select task
-$task="select * from p_sp where t_sunday != '' or t_monday != '' or t_tuesday != '' or t_wednesday != '' or t_thursday != '' or t_friday != '' or t_saturday != ''";
+$task="select * from p_sp where t_sunday != '' or t_monday != '' or t_tuesday != '' or t_wednesday != '' or t_thursday != '' or t_friday != '' or t_saturday != '' and queue = '$queue'";
 
 // select DayOFF
-$dayoff="select * from p_sp where sunday = 'Day OFF' or monday = 'Day OFF' or tuesday = 'Day OFF' or wednesday = 'Day OFF' or thursday = 'Day OFF' or friday = 'Day OFF' or saturday = 'Day OFF'";
+$dayoff="select * from p_sp where sunday = 'Day OFF' or monday = 'Day OFF' or tuesday = 'Day OFF' or wednesday = 'Day OFF' or thursday = 'Day OFF' or friday = 'Day OFF' or saturday = 'Day OFF' and queue = '$queue'";
 
 //select team meeting
-$team_meeting="select * from p_sp where tdate != '' and ttime != '' order by team_id desc";
+$team_meeting="select * from p_sp where tdate != '' and ttime != '' and queue = '$queue' order by team_id desc ";
 
 
 //select unpaid and planned sick
-$special_request="select * from p_sp where sunday = 'Planned Sick' or monday = 'Planned Sick' or tuesday = 'Planned Sick' or wednesday = 'Planned Sick' or thursday = 'Planned Sick' or friday = 'Planned Sick' or saturday = 'Planned Sick' or sunday = 'UnPaid' or monday = 'UnPaid' or tuesday = 'UnPaid' or wednesday = 'UnPaid' or thursday = 'UnPaid' or friday = 'UnPaid' or saturday = 'UnPaid'";
+$special_request="select * from p_sp where sunday = 'Planned Sick' or monday = 'Planned Sick' or tuesday = 'Planned Sick' or wednesday = 'Planned Sick' or thursday = 'Planned Sick' or friday = 'Planned Sick' or saturday = 'Planned Sick' or sunday = 'UnPaid' or monday = 'UnPaid' or tuesday = 'UnPaid' or wednesday = 'UnPaid' or thursday = 'UnPaid' or friday = 'UnPaid' or saturday = 'UnPaid' and queue = '$queue'";
 
 //select shift
-$shift = "select * from p_sp where sunday != '' or monday != '' or tuesday != '' or wednesday != '' or thursday != '' or friday != '' or saturday != '' ";
+$shift = "select * from p_sp where sunday != '' or monday != '' or tuesday != '' or wednesday != '' or thursday != '' or friday != '' or saturday != '' and queue = '$queue'";
 
-$sql_refund = "select * from p_sp where r_oracle != ''";
+$sql_refund = "select * from p_sp where r_oracle != '' and queue = '$queue'";
 
 }else {
  	$sun_startdate = strtotime("monday +1 week");
@@ -67,26 +75,26 @@ $sql_refund = "select * from p_sp where r_oracle != ''";
 		  $startdate = strtotime("+1 day", $startdate);
 		}
 // select annual
-$annual="select * from sp where sunday = 'Annual' or monday = 'Annual' or tuesday = 'Annual' or wednesday = 'Annual' or thursday = 'Annual' or friday = 'Annual' or saturday = 'Annual'";
+$annual="select * from sp where sunday = 'Annual' or monday = 'Annual' or tuesday = 'Annual' or wednesday = 'Annual' or thursday = 'Annual' or friday = 'Annual' or saturday = 'Annual' and queue = '$queue'";
 //select one to one 
-$oto ="select * from sp where o_sunday != '' or o_monday != '' or o_tuesday != '' or o_wednesday != '' or o_thursday != '' or o_friday != '' or o_saturday != ''";
+$oto ="select * from sp where o_sunday != '' or o_monday != '' or o_tuesday != '' or o_wednesday != '' or o_thursday != '' or o_friday != '' or o_saturday != '' and queue = '$queue'";
 // select task
-$task="select * from sp where t_sunday != '' or t_monday != '' or t_tuesday != '' or t_wednesday != '' or t_thursday != '' or t_friday != '' or t_saturday != ''";
+$task="select * from sp where t_sunday != '' or t_monday != '' or t_tuesday != '' or t_wednesday != '' or t_thursday != '' or t_friday != '' or t_saturday != '' and queue = '$queue'";
 
 // select DayOFF
-$dayoff="select * from sp where sunday = 'Day OFF' or monday = 'Day OFF' or tuesday = 'Day OFF' or wednesday = 'Day OFF' or thursday = 'Day OFF' or friday = 'Day OFF' or saturday = 'Day OFF'";
+$dayoff="select * from sp where sunday = 'Day OFF' or monday = 'Day OFF' or tuesday = 'Day OFF' or wednesday = 'Day OFF' or thursday = 'Day OFF' or friday = 'Day OFF' or saturday = 'Day OFF' and queue = '$queue'";
 
 //select team meeting
-$team_meeting="select * from sp where tdate != '' and ttime != '' order by team_id desc";
+$team_meeting="select * from sp where tdate != '' and ttime != '' and queue = '$queue' order by team_id desc";
 
 
 //select unpaid and planned sick
-$special_request="select * from sp where sunday = 'Planned Sick' or monday = 'Planned Sick' or tuesday = 'Planned Sick' or wednesday = 'Planned Sick' or thursday = 'Planned Sick' or friday = 'Planned Sick' or saturday = 'Planned Sick' or sunday = 'UnPaid' or monday = 'UnPaid' or tuesday = 'UnPaid' or wednesday = 'UnPaid' or thursday = 'UnPaid' or friday = 'UnPaid' or saturday = 'UnPaid'";
+$special_request="select * from sp where sunday = 'Planned Sick' or monday = 'Planned Sick' or tuesday = 'Planned Sick' or wednesday = 'Planned Sick' or thursday = 'Planned Sick' or friday = 'Planned Sick' or saturday = 'Planned Sick' or sunday = 'UnPaid' or monday = 'UnPaid' or tuesday = 'UnPaid' or wednesday = 'UnPaid' or thursday = 'UnPaid' or friday = 'UnPaid' or saturday = 'UnPaid' and queue = '$queue'";
 
 //select shift
-$shift = "select * from sp where sunday != '' or monday != '' or tuesday != '' or wednesday != '' or thursday != '' or friday != '' or saturday != '' ";
+$shift = "select * from sp where sunday != '' or monday != '' or tuesday != '' or wednesday != '' or thursday != '' or friday != '' or saturday != '' and queue = '$queue' ";
 
-$sql_refund = "select * from sp where r_oracle != ''";
+$sql_refund = "select * from sp where r_oracle != '' and queue = '$queue'";
 }
 
 // color cell

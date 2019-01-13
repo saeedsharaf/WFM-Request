@@ -121,7 +121,7 @@ box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 text-align:center;
 height: 30px; 
 width: 100%;
-padding-left: 15px;
+
 }
 
 .dim{
@@ -150,7 +150,29 @@ color:#808080;
 	margin-top: 50px;
 }
 
+.up{
+	background-color: #24318e;
+	color: white;
+	border:1px solid black;
+}
 
+.border{
+	border:1px solid black;
+	width: 5px;
+}
+
+.center{
+	text-align: center;
+	width: 100px;
+	height: 25px;
+
+}
+
+
+input{
+	text-align: center;
+	font-size: 14px;
+}
 
 </style>
 <!--===============================================================================================-->
@@ -178,7 +200,7 @@ color:#808080;
 					<a href="task.php" title="Task"><img class="left1" src="../style/task.png" width="25px" height="25px" style="margin:5px;margin-top:12px" /></a>
 					<a href="oto.php" title="One to One"><img class="left1" src="../style/coaching1.png" width="30px" height="35px" style="margin:5px;" /></a>
 					<a href="../structure/structure.php" title="Structure"><img class="left1" src="../style/struc.png" width="25px" height="30px" style="margin:9px;" /></a>
-					<a href="avaliable_annual.php" title="Avaliable Annual"><img class="left1" src="../style/928424.png" width="25px" height="30px" style="margin:9px;" /></a> 
+					<a href="avaliable_annual.php" title="Avaliable Annual"><img class="left1" src="../style/928424.png" width="25px" height="30px" style="margin:9px;" /></a>  
 					<?php
 					if($_SESSION['id'] == 9){
 						?>
@@ -213,7 +235,7 @@ color:#808080;
 					<table data-vertable="ver3">
 						<thead >
 							<tr class="row100 head" >
-								<th class="column100 column1" data-column="column1" rowspan="2" style="padding:0px ">Name</th>
+								<th class="column100 column1" data-column="column1" rowspan="3" style="padding:0px ">Name</th>
 								<th class="column100 column2" data-column="column2" rowspan="2">Oracle</th>
 								<th class="column100 column3" data-column="column3">Sunday</th>
 								<th class="column100 column4" data-column="column4">Monday</th>
@@ -222,12 +244,10 @@ color:#808080;
 								<th class="column100 column7" data-column="column7">Thursday</th>
 								<th class="column100 column8" data-column="column8">Friday</th>
 								<th class="column100 column9" data-column="column9">Saturday</th>
-							<?php if($_SESSION['super'] == 1){
-								?> <th class="column100 column10" data-column="column10" rowspan="2">From</th>
-									<th class="column100 column11" data-column="column11" rowspan="2">To</th>
-								<?php
-							} ?>
+							
 							</tr>
+
+
 							<tr class="row100 head">
 						<?php
 					//error_reporting(0);
@@ -236,7 +256,7 @@ color:#808080;
 	
 	
 	
-		$sun_startdate = strtotime("monday +1 week");
+		$sun_startdate = strtotime("Saturday -1 week");
 $sun_enddate = strtotime("-2",$sun_startdate);
 	$x = 2;
 	$s = 1;
@@ -248,7 +268,7 @@ while($x > 0){
 	$s++; 
 	$x--;
 
-	$sun_startdate = strtotime("-1 day", $sun_startdate);
+	$sun_startdate = strtotime("+1 day", $sun_startdate);
 	//echo $s . '<br>';
 }
 
@@ -260,7 +280,8 @@ while($x > 0){
 
 	$s= 3;
 
-		$startdate=strtotime("monday +1 week ");
+		$startdate=strtotime("Monday -1 week");
+		
 		$enddate=strtotime("+6 day", $startdate);
 		
 
@@ -279,13 +300,7 @@ while($x > 0){
 		  $startdate = strtotime("+1 day", $startdate);
 		}
 						
-						?>
-						</tr>
-						</thead>
-						<tbody>	
-					
-			<?php	
-				/******************************************************************************/
+
 			include'connect.php';
 			
 			
@@ -294,6 +309,54 @@ while($x > 0){
 				$sql1 = "select * from sp where team_id ='$teamid' ";
 
 				$result1 = $connt->query($sql1);
+
+				$coun_avrow = $result1->fetch_assoc();
+
+
+
+				//////////////////////////////////////////////////////////////////
+			$sql_sun = "select * from sp where av_sunday = 'Available Annual'";
+			$sql_mon = "select * from  sp where av_monday = 'Available Annual'";
+			$sql_tues = "select * from  sp where av_tuesday = 'Available Annual'";
+			$sql_wednes = "select * from  sp where av_wednesday = 'Available Annual'";
+			$sql_thurs = "select * from  sp where av_thursday = 'Available Annual'";
+			$sql_fri = "select * from  sp where av_friday = 'Available Annual'";
+			$sql_satur = "select * from  sp where av_saturday = 'Available Annual'";
+
+			$result_sun = $connt->query($sql_sun);
+			$result_mon = $connt->query($sql_mon);
+			$result_tues = $connt->query($sql_tues);
+			$result_wednes = $connt->query($sql_wednes);
+			$result_thurs = $connt->query($sql_thurs);
+			$result_fri = $connt->query($sql_fri);
+			$result_satur = $connt->query($sql_satur);
+
+
+		
+
+			//////////////////////////////////////////////////////////////////////
+
+
+			?>
+		</tr>
+		<tr class="row100 head">
+			<th class="column100 column2" data-column="column2" style="font-size: 14px;">Remaining</th>
+			<th class="column100 column3" data-column="column3"><?php echo ($coun_avrow['av_limit_sun'] - $result_sun->num_rows)  ?></th>
+			<th class="column100 column4" data-column="column4"><?php echo ($coun_avrow['av_limit_mon'] - $result_mon->num_rows)  ?></th>
+			<th class="column100 column5" data-column="column5"><?php echo ($coun_avrow['av_limit_tues'] - $result_tues->num_rows) ?></th>
+			<th class="column100 column6" data-column="column6"><?php echo ($coun_avrow['av_limit_wednes'] - $result_wednes->num_rows)  ?></th>
+			<th class="column100 column7" data-column="column7"><?php echo ($coun_avrow['av_limit_thurs'] - $result_thurs->num_rows) ?></th>
+			<th class="column100 column8" data-column="column8"><?php echo ($coun_avrow['av_limit_fri'] - $result_fri->num_rows) ?></th>
+			<th class="column100 column9" data-column="column9"><?php echo ($coun_avrow['av_limit_satur'] - $result_satur->num_rows) ?></th>
+
+		</tr>
+
+			</thead>
+		<tbody>	
+					
+			<?php	
+				/******************************************************************************/
+			
 				
 				?>
 				<div id="result" style="transition:0.5s;background-color:red;">
@@ -328,25 +391,25 @@ while($x > 0){
 				while ($row = $result->fetch_assoc()){ 
 
 			?>
-			<form action="task_update.php" method="post">
+			<form action="avaliable_update.php" method="post">
 			<tr class="row100">
 				
 				<td class="column100 column1" data-column="column1" style="padding-left: 20px; padding-right:20px;"><?php echo $row['name']; ?></td>
 				<td class="column100 column2" data-column="column2" style="width:140px;"><?php echo $row['id']; ?> <input type="hidden" name="id[]"  value="<?php echo $row['id']; ?>"> </td>
 				<td class="column100 column3" data-column="column3">
 					<select name="sun[]"  class="text" >
-						<option value="<?php echo $row['t_sunday']; ?>" style="color:#80808082;"   selected > <?php echo $row['t_sunday']; ?> </option>
-						<option value="" >  </option>
-						<option value="Task" > Task</option>
+						<option value="<?php echo $row['av_sunday']; ?>" style="color:#80808082;"   selected > <?php echo $row['av_sunday']; ?> </option>
+						
+						<option value="Available Annual" > Available Annual </option>
 						
 					</select>
 				</td>
 				
 				<td class="column100 column4" data-column="column4">
 				<select name="mon[]"  class="text" >
-						<option value="<?php echo $row['t_monday']; ?>" style="color:#a9a8a882;"    selected> <?php echo $row['t_monday']; ?> </option>
-						<option value="" >  </option>
-						<option value="Task " > Task </option>
+						<option value="<?php echo $row['av_monday']; ?>" style="color:#a9a8a882;"    selected> <?php echo $row['av_monday']; ?> </option>
+						
+						<option value="Available Annual" > Available Annual</option>
 						
 					</select>
 
@@ -354,34 +417,34 @@ while($x > 0){
 				
 				<td class="column100 column5" data-column="column5">
 				<select name="tues[]"  class="text" >
-						<option value="<?php echo $row['t_tuesday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['t_tuesday']; ?> </option>
-						<option value="" > </option>
-						<option value="Task " > Task </option>
+						<option value="<?php echo $row['av_tuesday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['av_tuesday']; ?> </option>
+						
+						<option value="Available Annual" > Available Annual</option>
 						
 					</select>
 				</td>
 				<td class="column100 column6" data-column="column6">
 				<select name="wednes[]"  class="text" >
-						<option value="<?php echo $row['t_wednesday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['t_wednesday']; ?> </option>
-						<option value="" > </option>
-						<option value="Task " > Task </option>
+						<option value="<?php echo $row['av_wednesday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['av_wednesday']; ?> </option>
+						
+						<option value="Available Annual" > Available Annual</option>
 						
 					</select>
 				</td>
 				<td class="column100 column7" data-column="column7">
 				<select name="thurs[]"  class="text" >
-						<option value="<?php echo $row['t_thursday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['t_thursday']; ?> </option>
-						<option value="" > </option>
-						<option value="Task " > Task </option>
+						<option value="<?php echo $row['av_thursday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['av_thursday']; ?> </option>
+						
+						<option value="Available Annual" > Available Annual</option>
 						
 					</select>
 
 				</td>
 				<td class="column100 column8" data-column="column8">
 				<select name="fri[]"  class="text" >
-						<option value="<?php echo $row['t_friday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['t_friday']; ?> </option>
-						<option value="" > </option>
-						<option value="Task " > Task </option>
+						<option value="<?php echo $row['av_friday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['av_friday']; ?> </option>
+						
+						<option value="Available Annual" > Available Annual</option>
 						
 					</select>
 
@@ -389,85 +452,13 @@ while($x > 0){
 				
 				<td class="column100 column9" data-column="column9">
 				<select name="satur[]"  class="text" >
-						<option value="<?php echo $row['t_saturday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['t_saturday']; ?> </option>
-						<option value="" > </option>
-						<option value="Task " > Task </option>
+						<option value="<?php echo $row['av_saturday']; ?>" style="color:#a9a8a882;"   selected> <?php echo $row['av_saturday']; ?> </option>
+						
+						<option value="Available Annual" > Available Annual</option>
 						
 					</select>
 				</td>
 
-
-				<td class="column100 column10" data-column="column10">
-				<select name="from[]"  class="text" >
-						<option value="<?php echo $row['t_from']; ?>" style="color:#a9a8a882;"   selected  > <?php echo $row['t_from']; ?> </option>
-						<option value="" > </option>
-						<option value="8 AM" > 8 AM </option>
-						<option value="9 AM" > 9 AM </option>
-						<option value="10 AM" > 10 AM </option>
-						<option value="11 AM" > 11 AM </option>
-						<option value="12 PM" > 12 PM </option>
-						<option value="1 PM" > 1 PM </option>
-						<option value="2 PM" > 2 PM </option>
-						<option value="3 PM" > 3 PM </option>
-						<option value="4 PM" > 4 PM </option>
-						<option value="5 PM" > 5 PM </option>
-						<option value="6 PM" > 6 PM </option>
-						<option value="7 PM" > 7 PM </option>
-						<option value="8 PM" > 8 PM </option>
-						<option value="9 PM" > 9 PM </option>
-						<option value="10 PM" > 10 PM </option>
-						<option value="11 PM" > 11 PM </option>
-						<option value="12 AM" > 12 AM </option>
-						<option value="1 AM" > 1 AM </option>
-						<option value="2 AM" > 2 AM </option>
-						<option value="3 AM" > 3 AM </option>
-						<option value="4 AM" > 4 AM </option>
-						<option value="5 AM" > 5 AM </option>
-						<option value="6 AM" > 6 AM </option>
-						<option value="7 AM" > 7 AM </option>
-
-
-
-
-						
-					</select>
-				</td>
-
-				<td class="column100 column11" data-column="column11">
-				<select name="to[]"  class="text" >
-						<option value="<?php echo $row['t_to']; ?>" style="color:#a9a8a882;"   selected  > <?php echo $row['t_to']; ?> </option>
-						<option value="" > </option>
-						<option value="8 AM" > 8 AM </option>
-						<option value="9 AM" > 9 AM </option>
-						<option value="10 AM" > 10 AM </option>
-						<option value="11 AM" > 11 AM </option>
-						<option value="12 PM" > 12 PM </option>
-						<option value="1 PM" > 1 PM </option>
-						<option value="2 PM" > 2 PM </option>
-						<option value="3 PM" > 3 PM </option>
-						<option value="4 PM" > 4 PM </option>
-						<option value="5 PM" > 5 PM </option>
-						<option value="6 PM" > 6 PM </option>
-						<option value="7 PM" > 7 PM </option>
-						<option value="8 PM" > 8 PM </option>
-						<option value="9 PM" > 9 PM </option>
-						<option value="10 PM" > 10 PM </option>
-						<option value="11 PM" > 11 PM </option>
-						<option value="12 AM" > 12 AM </option>
-						<option value="1 AM" > 1 AM </option>
-						<option value="2 AM" > 2 AM </option>
-						<option value="3 AM" > 3 AM </option>
-						<option value="4 AM" > 4 AM </option>
-						<option value="5 AM" > 5 AM </option>
-						<option value="6 AM" > 6 AM </option>
-						<option value="7 AM" > 7 AM </option>
-
-
-
-
-						
-					</select>
-				</td>
 			</tr>
 			
 		<?php
@@ -486,11 +477,79 @@ while($x > 0){
 
 	<div style="width: 100px;height: 50px;margin: 0 auto;margin-top: 20px;"><input type="submit" name="submit" style="width:100px; height:30px;" class="submit" value="Submit"> </div>
 	</form>
+
+
+					<?php
+
+if($teamid == 2 or $teamid == 4 ){
+
+?>
+<table style="width:30%;text-align: center">
+	<thead>
+	<form method="post" action="avaliable_update.php" >
+<tr>
+	<td class="up" style="color: white"> Sunday </td>
+	<td class="border"><input type="number" name="up_sunday" value ="<?php echo $coun_avrow['av_limit_sun'] ?>">  </td>
+	
+</tr>
+<tr>
+	<td class="up" style="color: white"> Monday </td>
+	<td class="border" style="color: white"><input type="number" name="up_monday" value ="<?php echo $coun_avrow['av_limit_mon'] ?>">  </td>
+	
+</tr>
+<tr>
+	<td class="up" style="color: white"> Teusday </td>
+	<td class="border"><input type="number" name="up_tuesday" value ="<?php echo $coun_avrow['av_limit_tues'] ?>">  </td>
+	
+</tr>
+<tr>
+	<td class="up" style="color: white"> Wednesday </td>
+	<td class="border"> <input type="number" name="up_wednesday" value ="<?php echo $coun_avrow['av_limit_wednes'] ?>">  </td>
+
+</tr>
+<tr>
+	<td class="up" style="color: white"> Thursday </td>
+	<td class="border"><input type="number" name="up_thursday" value ="<?php echo $coun_avrow['av_limit_thurs'] ?>">  </td>
+	
+</tr>
+<tr>
+	<td class="up" style="color: white"> Friday </td>
+	<td class="border"><input type="number" name="up_friday" value ="<?php echo $coun_avrow['av_limit_fri'] ?>">  </td>
+	
+</tr>
+<tr>
+	<td class="up" style="color: white"> Saturday </td>
+	<td class="border"><input type="number" name="up_saturday" value ="<?php echo $coun_avrow['av_limit_satur'] ?>">  </td>
+	
+</tr>
+
+</thead>
+
+
+</table>
+<input type="submit" name="up_limit" class="submit" style="margin-left: 140px;margin-top: 20px;"> 
+</form>
+
+
+<?php
+
+}
+
+?>
 	</div>
+	<form action="av_download.php" method="get">
+		<input type="submit" name="download" style="display: none" accesskey="s">
+	</form>
+
 	</div>
 	</div>
 	
+
+
+
 				</div>
+
+
 				
 			</div>
 	
@@ -509,6 +568,9 @@ while($x > 0){
 <!--===============================================================================================-->
 
 	<script src="../vendor/js/main.js"></script>
+
+
+
 
 
 </body>

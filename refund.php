@@ -188,6 +188,7 @@ color:#808080;
 					<a href="task.php" title="Task"><img class="left1" src="../style/task.png" width="25px" height="25px" style="margin:5px;margin-top:12px" /></a>
 					<a href="oto.php" title="One to One"><img class="left1" src="../style/coaching1.png" width="30px" height="35px" style="margin:5px;" /></a>
 					<a href="../structure/structure.php" title="Structure"><img class="left1" src="../style/struc.png" width="25px" height="30px" style="margin:9px;" /></a>
+					<a href="avaliable_annual.php" title="Avaliable Annual"><img class="left1" src="../style/928424.png" width="25px" height="30px" style="margin:9px;" /></a>
 					<?php
 					if($_SESSION['id'] == 9){
 						?>
